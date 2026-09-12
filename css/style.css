@@ -1,0 +1,715 @@
+/* ==========================================================================
+   Design by Tom — portfolio stylesheet
+   --------------------------------------------------------------------------
+   Everything about how the site looks lives in this one file.
+
+   The values in ":root" below are the site's design system. Change a colour
+   or a size there once and it updates everywhere on every page. Prefer
+   changing these over hard-coding a colour further down.
+   ========================================================================== */
+
+:root {
+  /* ---- Colours ---------------------------------------------------------- */
+  --c-bg:            #f5f5f5;  /* page background, warm off-white            */
+  --c-ink:           #141811;  /* main text, near-black                      */
+  --c-purple:        #3d2357;  /* brand purple: footer, buttons, bands       */
+  --c-purple-hover:  #4e2d6f;  /* slightly lighter, for button hover         */
+  --c-white:         #ffffff;  /* cards                                      */
+  --c-on-purple:     #f5f5f5;  /* text sitting on the purple                 */
+  --c-on-purple-dim: #c8cad0;  /* secondary text on purple                   */
+  --c-muted:         #5b5d5d;  /* secondary text on the light background     */
+  --c-quote-bg:      rgba(223, 209, 237, 0.5); /* lilac testimonial cards       */
+  --c-hairline:      #e2e2df;  /* subtle dividers                            */
+
+  /* Per-project accent colours, used on the project tiles and case studies */
+  --c-qredo:   #4d1f86;
+  --c-hanover: #00594c;
+  --c-lokal:   #0f1115;
+
+  /* ---- Type ------------------------------------------------------------- */
+  --font-display: "Kaisei Decol", Georgia, "Times New Roman", serif;
+  --font-body: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+
+  --t-hero:    72px;  /* big serif page headlines                            */
+  --t-h2:      40px;  /* section headings                                    */
+  --t-h3:      32px;  /* card titles                                         */
+  --t-lead:    24px;  /* intro paragraphs, subtitles                         */
+  --t-nav:     20px;  /* navigation, footer column headings                  */
+  --t-body:    16px;  /* body copy                                           */
+  --t-small:   14px;  /* captions, fine print                                */
+
+  --lh-hero: 1.45;
+  --lh-body: 1.65;
+
+  /* ---- Spacing & shape -------------------------------------------------- */
+  --gutter:      80px;  /* space between content and the window edge         */
+  --content-max: 1280px;/* the content column never grows past this          */
+  --radius:      16px;
+  --radius-lg:   24px;
+  --radius-btn:  8px;
+}
+
+/* ==========================================================================
+   Reset — a small, boring baseline
+   ========================================================================== */
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--c-bg);
+  color: var(--c-ink);
+  font-family: var(--font-body);
+  font-size: var(--t-body);
+  line-height: var(--lh-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img, svg { display: block; max-width: 100%; }
+
+a { color: inherit; }
+
+h1, h2, h3, p, figure, blockquote, figcaption { margin: 0; }
+
+ul { margin: 0; padding: 0; list-style: none; }
+
+:focus-visible {
+  outline: 2px solid var(--c-purple);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* Visible only to screen readers — used for the "skip to content" link */
+.visually-hidden {
+  position: absolute;
+  width: 1px; height: 1px;
+  margin: -1px; padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ==========================================================================
+   Layout primitives
+   ========================================================================== */
+
+/* The content column. Fixed 1280px wide, centred, with 80px gutters either
+   side once the window gets narrow. This single rule is what makes the site
+   look identical at 1440px and 1920px, exactly as the design specifies. */
+.container {
+  width: min(var(--content-max), 100% - (var(--gutter) * 2));
+  margin-inline: auto;
+}
+
+/* A full-width coloured band with a normal content column inside it. */
+.band { width: 100%; }
+
+.page { position: relative; display: flex; flex-direction: column; min-height: 100vh; }
+.page > main { flex: 1 0 auto; }
+
+/* ==========================================================================
+   Type helpers
+   ========================================================================== */
+
+.display {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: var(--t-hero);
+  line-height: var(--lh-hero);
+  letter-spacing: -0.01em;
+}
+
+.h2 { font-size: var(--t-h2); font-weight: 400; line-height: 1.3; }
+.h3 { font-size: var(--t-h3); font-weight: 700; line-height: 1.25; }
+.lead { font-size: var(--t-lead); line-height: 1.4; }
+
+.prose p + p { margin-top: 1.25em; }
+
+/* ==========================================================================
+   Buttons
+   ========================================================================== */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 28px;
+  border: 2px solid transparent;
+  border-radius: var(--radius-btn);
+  font-size: var(--t-body);
+  font-weight: 500;
+  line-height: 1.2;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.btn--primary { background: var(--c-purple); color: var(--c-on-purple); }
+.btn--primary:hover { background: var(--c-purple-hover); }
+
+/* Outlined button used on the dark purple bands */
+.btn--ghost {
+  background: transparent;
+  color: var(--c-on-purple);
+  border-color: var(--c-on-purple);
+}
+.btn--ghost:hover { background: var(--c-on-purple); color: var(--c-purple); }
+
+/* A plain text link that sits next to a button */
+.btn-text {
+  display: inline-flex;
+  align-items: center;
+  padding: 14px 4px;
+  text-decoration: none;
+  font-size: var(--t-body);
+}
+.btn-text:hover { text-decoration: underline; text-underline-offset: 4px; }
+
+/* ==========================================================================
+   Site header
+   ========================================================================== */
+
+/* The header uses the same content column as the rest of the site, so the
+   logo lines up with the hero text and the footer at every window width. */
+.site-header { padding: 32px 0; }
+
+/* Case-study pages lay the header over the top of their dark hero image,
+   so it is lifted out of the document flow and recoloured for a dark ground. */
+.site-header--overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+}
+
+.site-header--overlay .nav__link { color: var(--c-on-purple); }
+.site-header--overlay .nav__link:hover,
+.site-header--overlay .nav__link[aria-current="page"] { color: #fff; }
+
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.site-header__logo { width: 77px; height: 77px; }
+
+.nav { display: flex; align-items: center; gap: 32px; }
+
+.nav__link {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 32px;
+  font-size: var(--t-nav);
+  text-decoration: none;
+  color: var(--c-ink);
+}
+
+.nav__link:hover { color: var(--c-purple); }
+
+/* The current page is purple with a rule under it. Marked up with
+   aria-current="page", so screen readers announce it too. */
+.nav__link[aria-current="page"] { color: var(--c-purple); }
+
+.nav__link[aria-current="page"]::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background: currentColor;
+}
+
+/* ==========================================================================
+   Site footer
+   ========================================================================== */
+
+.site-footer {
+  background: var(--c-purple);
+  color: var(--c-on-purple);
+  padding: 100px 0 84px;
+}
+
+.site-footer__inner { display: flex; flex-direction: column; gap: 80px; }
+
+.site-footer__brand { display: flex; align-items: center; gap: 24px; }
+
+.site-footer__logo { width: 77px; height: 77px; }
+
+.site-footer__name { font-size: var(--t-h3); font-weight: 700; line-height: 1.2; }
+
+.site-footer__role {
+  margin-top: 8px;
+  font-size: var(--t-body);
+  color: var(--c-on-purple-dim);
+}
+
+.site-footer__links { display: flex; flex-direction: column; gap: 64px; }
+
+/* Two 404px columns, 252px apart — the measurements from the design. */
+.footer-cols { display: grid; grid-template-columns: 404px 404px; gap: 252px; }
+
+.footer-col__title {
+  font-size: var(--t-nav);
+  font-weight: 700;
+  margin-bottom: 24px;
+}
+
+.footer-col__list { display: flex; flex-direction: column; gap: 16px; }
+
+.footer-col__list a {
+  font-size: var(--t-body);
+  text-decoration: none;
+}
+.footer-col__list a:hover { text-decoration: underline; text-underline-offset: 4px; }
+
+.site-footer__legal { font-size: var(--t-small); color: var(--c-on-purple); }
+
+/* ==========================================================================
+   Home page
+   ========================================================================== */
+
+.home-hero {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 1024px;
+}
+
+/* The design constrains the headline to 1106px so it breaks onto two lines. */
+.home-hero__title { max-width: 1106px; }
+
+/* ==========================================================================
+   Large buttons — used on the project cards
+   ========================================================================== */
+
+.btn--lg {
+  font-size: var(--t-lead);
+  font-weight: 400;
+  padding: 16px 32px;
+  border-radius: 12px;
+  border-width: 4px;
+}
+
+.btn--primary.btn--lg { border-color: var(--c-purple); }
+
+/* Same box as the primary button but unfilled, so the pair line up exactly */
+.btn--quiet {
+  background: transparent;
+  border-color: transparent;
+  color: var(--c-ink);
+}
+.btn--quiet:hover { text-decoration: underline; text-underline-offset: 4px; }
+
+/* ==========================================================================
+   Projects page
+   ========================================================================== */
+
+.projects-intro { padding: 180px 0 96px; }
+
+.projects-intro__title { margin-bottom: 56px; }
+
+.project-list { display: flex; flex-direction: column; gap: 64px; }
+
+.project-card {
+  display: flex;
+  align-items: center;
+  gap: 48px;
+  padding: 48px;
+  background: var(--c-white);
+  border-radius: var(--radius-lg);
+}
+
+/* Hanover puts its tile on the left — the design alternates them */
+.project-card--reverse { flex-direction: row-reverse; }
+
+.project-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  flex: 1 0 0;
+  min-width: 0;
+}
+
+.project-card__head { display: flex; flex-direction: column; gap: 24px; }
+
+.project-card__title { font-size: 64px; font-weight: 700; line-height: 1.1; }
+
+.project-card__sub { display: flex; flex-direction: column; gap: 12px; }
+
+.project-card__tagline { font-size: 48px; font-weight: 400; line-height: 1.15; }
+
+.project-card__meta { font-size: var(--t-nav); }
+
+.project-card__actions { display: flex; align-items: center; gap: 24px; }
+
+/* ---- The square logo tile ------------------------------------------------ */
+
+.tile {
+  flex-shrink: 0;
+  width: 490px;
+  height: 490px;
+  border-radius: var(--radius);
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+}
+
+.tile--qredo   { background: var(--c-qredo); }
+.tile--hanover { background: var(--c-hanover); }
+.tile--lokal   { background: var(--c-lokal); }
+
+/* Each logo sits in a fixed-size window and is positioned inside it exactly
+   as the design crops it. The window sizes come straight from Figma. */
+.tile__window { position: relative; overflow: hidden; }
+
+.tile__window--qredo { width: 197px; height: 202px; }
+.tile__window--qredo img {
+  position: absolute;
+  width: 249.65%;
+  height: 109.9%;
+  left: -16.19%;
+  top: -4.95%;
+  max-width: none;
+}
+
+.tile__window--hanover { width: 366px; height: 84px; }
+.tile__window--hanover img {
+  width: 100%;
+  height: 100%;
+  transform: rotate(180deg) scaleX(-1);
+}
+
+.tile__window--lokal { width: 542px; height: 542px; }
+.tile__window--lokal img { width: 100%; height: 100%; object-fit: cover; }
+
+/* ==========================================================================
+   Profile page
+   ========================================================================== */
+
+.profile { padding: 180px 0 96px; display: flex; flex-direction: column; gap: 80px; }
+
+.profile__top { display: flex; align-items: flex-start; gap: 142px; }
+
+/* ---- Left column: the written bio --------------------------------------- */
+
+.profile__bio { width: 733px; flex-shrink: 0; display: flex; flex-direction: column; gap: 56px; }
+
+.profile__sections { display: flex; flex-direction: column; gap: 32px; }
+
+.profile-section { display: flex; flex-direction: column; gap: 24px; }
+
+.profile-section__title { font-size: var(--t-h2); font-weight: 400; line-height: 1.2; }
+
+/* Body copy on this page is set at 20px/40px, larger than the site default */
+.profile-copy { font-size: var(--t-nav); line-height: 40px; }
+.profile-copy p + p { margin-top: 20px; }
+
+/* ---- Right column: the profile card ------------------------------------- */
+
+.profile-card {
+  flex-shrink: 0;
+  width: 405px;
+  padding: 32px;
+  background: var(--c-white);
+  border-radius: var(--radius-lg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 48px;
+}
+
+.profile-card__photo {
+  position: relative;
+  width: 360px;
+  height: 360px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: var(--c-white);
+}
+
+/* The photo is taller than the circle and anchored to the top, matching the
+   crop set in the design. */
+.profile-card__photo img {
+  position: absolute;
+  top: 3px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 357px;
+  height: 431px;
+  max-width: none;
+  object-fit: cover;
+}
+
+.profile-card__info { display: flex; flex-direction: column; gap: 48px; width: 100%; }
+
+.profile-card__identity {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  text-align: center;
+}
+
+.profile-card__name { font-size: var(--t-h3); font-weight: 400; line-height: 1.2; }
+
+.profile-card__meta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  line-height: 1.2;
+  color: var(--c-muted);
+}
+
+.profile-card__role { font-size: var(--t-nav); }
+.profile-card__place { font-size: var(--t-body); }
+
+.profile-card__actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.profile-card__actions .btn { width: 100%; }
+
+.icon-links { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+
+.icon-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 32px;
+  font-size: var(--t-nav);
+  text-decoration: none;
+}
+.icon-link:hover { text-decoration: underline; text-underline-offset: 4px; }
+.icon-link img { width: 24px; height: 24px; }
+
+/* ==========================================================================
+   Testimonials
+   ========================================================================== */
+
+.testimonials { display: flex; flex-direction: column; gap: 32px; }
+
+.testimonials__title { font-size: 48px; font-weight: 400; line-height: 1.2; }
+
+/* The design runs these off the right edge, so they scroll sideways.
+   scroll-snap makes that feel deliberate rather than accidental. */
+.testimonials__track {
+  display: flex;
+  align-items: stretch;
+  gap: 32px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 8px;
+  scrollbar-width: thin;
+}
+
+.testimonial {
+  flex: 0 0 405px;
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 24px;
+  min-height: 253px;
+  padding: 24px;
+  background: var(--c-quote-bg);
+  border-radius: var(--radius-lg);
+}
+
+.testimonial__quote { font-size: var(--t-body); font-style: italic; line-height: 1.35; margin: 0; }
+.testimonial__quote p + p { margin-top: 1em; }
+
+.testimonial__author { display: flex; flex-direction: column; gap: 4px; line-height: 1.2; }
+.testimonial__name { font-size: var(--t-nav); font-weight: 700; }
+.testimonial__role { font-size: var(--t-body); font-weight: 300; }
+
+/* ==========================================================================
+   Case study pages (Qredo, Hanover Research, Lokal)
+   All three share this structure:
+     hero  ->  "Who are ...?" band  ->  timeline  ->  mockups  ->  timeline  ->  gallery
+   ========================================================================== */
+
+/* ---- Hero ---------------------------------------------------------------- */
+
+.cs-hero {
+  position: relative;
+  height: 1024px;
+  background-color: var(--c-purple);
+  background-size: cover;
+  background-position: center;
+  color: var(--c-on-purple);
+}
+
+.cs-hero--qredo   { background-image: url("../assets/img/hero-qredo.jpg"); }
+.cs-hero--hanover { background-color: var(--c-hanover); }
+.cs-hero--lokal   { background-color: var(--c-lokal); }
+
+.cs-hero__inner { position: relative; height: 100%; }
+
+/* "< Projects" back link, positioned as in the design */
+.cs-back {
+  position: absolute;
+  top: 189px;
+  left: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 32px;
+  font-size: var(--t-nav);
+  text-decoration: none;
+}
+.cs-back:hover { text-decoration: underline; text-underline-offset: 4px; }
+.cs-back img { width: 24px; height: 24px; }
+
+.cs-hero__title {
+  position: absolute;
+  top: 409px;
+  left: 0;
+  height: 567px;
+  /* Each project sets its own measure so the tagline breaks as designed */
+  width: var(--cs-title-w, 624px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.cs-hero__heading { display: flex; flex-direction: column; gap: 24px; }
+.cs-hero__name { font-size: 100px; font-weight: 700; line-height: 1.2; }
+.cs-hero__tagline { font-size: 48px; line-height: 1.2; }
+.cs-hero__meta { font-size: 32px; line-height: 1.2; }
+
+.cs-hero__logo { position: absolute; bottom: 48px; right: 0; }
+
+/* The Qredo mark is cropped out of a wider source image */
+.cs-hero__logo--qredo { width: 160px; height: 148px; overflow: hidden; }
+.cs-hero__logo--qredo img {
+  position: absolute;
+  width: 243.47%; height: 118.09%;
+  left: -13.86%; top: -9.04%;
+  max-width: none;
+}
+
+/* ---- "Who are ...?" band ------------------------------------------------- */
+
+.cs-intro { background: var(--c-purple); color: var(--c-on-purple); padding: 64px 0; }
+
+/* This band is indented further than the rest of the page, as designed */
+.cs-intro__inner {
+  width: min(1062px, 100% - (var(--gutter) * 2));
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 64px;
+}
+
+.cs-intro__text { display: flex; flex-direction: column; gap: 32px; }
+.cs-intro__title { font-size: 48px; font-weight: 700; line-height: 1.2; }
+.cs-intro__body { font-size: var(--t-lead); line-height: 40px; max-width: 1051px; }
+
+/* Outlined button on the dark band */
+.btn--outline {
+  background: transparent;
+  color: #efebf3;
+  border: 2px solid #efebf3;
+  font-size: var(--t-lead);
+  padding: 16px 32px;
+  border-radius: 12px;
+}
+.btn--outline:hover { background: #efebf3; color: var(--c-purple); }
+
+/* ---- Body: timelines, mockups, gallery ----------------------------------- */
+
+.cs-body { padding: 96px 0; display: flex; flex-direction: column; gap: 128px; }
+
+.cs-timeline {
+  width: min(1062px, 100% - (var(--gutter) * 2));
+  margin-inline: auto;
+  display: flex;
+  gap: 32px;
+  align-items: flex-start;
+}
+
+.cs-timeline__rail { flex: 0 0 187px; }
+
+.cs-timeline__entries { flex: 1 1 auto; display: flex; flex-direction: column; gap: 64px; }
+
+.cs-entry { display: flex; flex-direction: column; gap: 32px; }
+.cs-entry__head { display: flex; flex-direction: column; gap: 16px; }
+.cs-entry__title { font-size: 48px; font-weight: 400; line-height: 1.2; }
+.cs-entry__lede { font-size: var(--t-lead); line-height: 1.2; }
+.cs-entry__body { font-size: var(--t-nav); line-height: 40px; }
+.cs-entry__body p + p { margin-top: 20px; }
+
+/* The wide white panel holding the main product shot */
+.cs-shot {
+  width: min(var(--content-max), 100% - (var(--gutter) * 2));
+  margin-inline: auto;
+  background: var(--c-white);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.cs-shot img { width: 100%; height: auto; }
+
+/* Three-up gallery of smaller shots */
+.cs-gallery {
+  width: min(var(--content-max), 100% - (var(--gutter) * 2));
+  margin-inline: auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+
+.cs-gallery__item {
+  background: var(--c-white);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.cs-gallery__item img { width: 100%; height: auto; }
+
+/* ==========================================================================
+   Image placeholders
+   --------------------------------------------------------------------------
+   These stand in for artwork that still has to be exported from Figma.
+   Each one names the file that belongs there. To fill one in: save the image
+   into assets/img/ with that name, then replace the whole <div> with
+   <img src="assets/img/THAT-NAME" alt="..." width="..." height="...">.
+   When every placeholder is gone this block can be deleted.
+   ========================================================================== */
+
+.placeholder {
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: var(--c-white);
+  border: 1px dashed #c9c4cf;
+  border-radius: var(--radius);
+  color: #8a8594;
+  font-size: var(--t-small);
+  text-align: center;
+  line-height: 1.5;
+}
+
+.placeholder code {
+  display: block;
+  margin-top: 4px;
+  font-size: 13px;
+  color: var(--c-purple);
+}
+
+/* The timeline rail placeholder is tall and narrow, so it gets no panel */
+.placeholder--rail { background: transparent; }
