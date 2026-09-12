@@ -177,22 +177,24 @@ ul { margin: 0; padding: 0; list-style: none; }
    ========================================================================== */
 
 /* The header uses the same content column as the rest of the site, so the
-   logo lines up with the hero text and the footer at every window width. */
-.site-header { padding: 32px 0; }
+   logo lines up with the hero text and the footer at every window width.
 
-/* Case-study pages lay the header over the top of their dark hero image,
-   so it is lifted out of the document flow and recoloured for a dark ground. */
-.site-header--overlay {
+   It is taken out of the document flow on every page: in the design the header
+   sits ON TOP of the first section rather than above it, so each page's first
+   section begins at y=0 and the header overlays its top 141px. */
+.site-header {
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   z-index: 2;
+  padding: 32px 0;
 }
 
-.site-header--overlay .nav__link { color: var(--c-on-purple); }
-.site-header--overlay .nav__link:hover,
-.site-header--overlay .nav__link[aria-current="page"] { color: #fff; }
+/* Case-study heroes are dark, so the header is recoloured over them. */
+.site-header--on-dark .nav__link { color: var(--c-on-purple); }
+.site-header--on-dark .nav__link:hover,
+.site-header--on-dark .nav__link[aria-current="page"] { color: #fff; }
 
 .site-header__inner {
   display: flex;
@@ -256,8 +258,10 @@ ul { margin: 0; padding: 0; list-style: none; }
 
 .site-footer__links { display: flex; flex-direction: column; gap: 64px; }
 
-/* Two 404px columns, 252px apart — the measurements from the design. */
-.footer-cols { display: grid; grid-template-columns: 404px 404px; gap: 252px; }
+/* The design has two 404px columns 252px apart. The first column is widened
+   into the empty gap beside it so the longest project link still fits on one
+   line in Inter (it fitted in Helvetica Neue). The second column does not move. */
+.footer-cols { display: grid; grid-template-columns: 656px 404px; gap: 0; }
 
 .footer-col__title {
   font-size: var(--t-nav);
