@@ -44,6 +44,7 @@
   /* ---- Spacing & shape -------------------------------------------------- */
   --gutter:      80px;  /* space between content and the window edge         */
   --content-max: 1280px;/* the content column never grows past this          */
+  --header-h:    141px; /* header height: 32px padding + 77px logo + 32px    */
   --radius:      16px;
   --radius-lg:   24px;
   --radius-btn:  8px;
@@ -179,22 +180,46 @@ ul { margin: 0; padding: 0; list-style: none; }
 /* The header uses the same content column as the rest of the site, so the
    logo lines up with the hero text and the footer at every window width.
 
-   It is taken out of the document flow on every page: in the design the header
-   sits ON TOP of the first section rather than above it, so each page's first
-   section begins at y=0 and the header overlays its top 141px. */
+   It is sticky: it stays flush with the top of the window while you scroll.
+   At the top of the page it is transparent and overlays the first section
+   (exactly as in the design); the negative bottom margin pulls that section
+   up so it starts at y=0 behind the header. The moment the page scrolls, a
+   tiny script adds the .is-stuck class and the frosted bar below appears. */
 .site-header {
-  position: absolute;
+  position: sticky;
   top: 0;
-  left: 0;
-  right: 0;
   z-index: 2;
   padding: 32px 0;
+  margin-bottom: calc(-1 * var(--header-h));
+}
+
+/* The frosted bar that appears once the header is stuck. Translucent so the
+   hero colour still shows through lightly, blurred, with a hairline underneath.
+   Falls back to a near-opaque bar if backdrop-filter is unsupported. */
+.site-header.is-stuck {
+  background: rgba(245, 245, 245, 0.94);
+  border-bottom: 1px solid var(--c-hairline);
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+@supports (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px)) {
+  .site-header.is-stuck {
+    background: rgba(245, 245, 245, 0.72);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+  }
 }
 
 /* Case-study heroes are dark, so the header is recoloured over them. */
 .site-header--on-dark .nav__link { color: var(--c-on-purple); }
 .site-header--on-dark .nav__link:hover,
 .site-header--on-dark .nav__link[aria-current="page"] { color: #fff; }
+
+/* Once the sticky bar appears over light content, a case-study header swaps
+   back to the normal dark-on-light theme (and the script swaps its logo). */
+.site-header--on-dark.is-stuck .nav__link { color: var(--c-ink); }
+.site-header--on-dark.is-stuck .nav__link:hover,
+.site-header--on-dark.is-stuck .nav__link[aria-current="page"] { color: var(--c-purple); }
 
 .site-header__inner {
   display: flex;

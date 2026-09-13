@@ -17,12 +17,13 @@ Optimise every decision for "he can still change this in a year without help".
 
 ## Structure
 
-Six flat HTML pages, one stylesheet, one image folder:
+Six flat HTML pages, one stylesheet, one small vanilla script, one image folder:
 
 ```
 index.html  profile.html  projects.html
 project-qredo.html  project-hanover.html  project-lokal.html
 css/style.css        all styling
+js/main.js           sticky header behaviour (vanilla JS, no libraries)
 assets/img/          all images
 assets/cv/           CV pdf
 .nojekyll            stops GitHub running Jekyll over the files

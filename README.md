@@ -8,7 +8,8 @@ This is the website for **designbytom** (Nikola Tomic), built from the Figma des
 
 ## How this site works (the short version)
 
-It is six plain HTML files, one stylesheet, and a folder of images. That's it.
+It is six plain HTML files, one stylesheet, a small vanilla-JavaScript file
+(the sticky header), and a folder of images. That's it.
 
 There is **no build step**, **no dependencies**, and **nothing to install**. The files
 in this repository are exactly the files the browser downloads. That means the site
@@ -26,6 +27,7 @@ online.
 | `project-hanover.html` | Hanover Research case study |
 | `project-lokal.html` | Lokal (weRate) case study |
 | `css/style.css` | How everything looks |
+| `js/main.js` | Tiny script for the sticky header (no libraries) |
 | `assets/img/` | All images |
 
 ---
