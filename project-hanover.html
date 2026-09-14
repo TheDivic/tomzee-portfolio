@@ -25,7 +25,6 @@
       </a>
       <nav class="nav" id="nav" aria-label="Main">
         <a class="nav__link" href="index.html">Home</a>
-        <a class="nav__link" href="profile.html">Profile</a>
         <a class="nav__link" href="projects.html" aria-current="page">Projects</a>
       </nav>
       <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav">
@@ -40,10 +39,11 @@
   <main id="main">
     <section class="cs-hero cs-hero--hanover" style="--cs-title-w: 880px">
       <div class="container cs-hero__inner">
-        <a class="cs-back" href="projects.html">
+        <span class="cs-hero__index" aria-hidden="true">02</span>
+        <a class="cs-back" href="projects.html" data-reveal="fade">
           <img src="assets/img/icon-arrow-left.svg" alt="" width="24" height="24">Projects
         </a>
-        <div class="cs-hero__title">
+        <div class="cs-hero__title" data-reveal data-parallax="0.12">
           <div class="cs-hero__heading">
             <h1 class="cs-hero__name">Hanover Research</h1>
             <p class="cs-hero__tagline">High-quality research &amp; analytics</p>
@@ -54,7 +54,7 @@
       </div>
     </section>
 
-    <section class="cs-intro">
+    <section class="cs-intro" data-reveal>
       <div class="cs-intro__inner">
         <div class="cs-intro__text">
           <h2 class="cs-intro__title">Who are Hanover Research?</h2>
@@ -68,7 +68,7 @@
     <div class="cs-body">
       <section class="cs-timeline cs-timeline--hanover">
         <div class="cs-timeline__entries">
-          <article class="cs-entry">
+          <article class="cs-entry" data-reveal>
             <div class="cs-entry__node">
               <img src="assets/img/hanover-node-1.png" alt="" width="140" height="140" loading="lazy">
             </div>
@@ -83,7 +83,7 @@
             </div>
           </article>
 
-          <article class="cs-entry">
+          <article class="cs-entry" data-reveal>
             <div class="cs-entry__node">
               <img src="assets/img/hanover-node-2.png" alt="" width="140" height="140" loading="lazy">
             </div>
@@ -100,13 +100,13 @@
         </div>
       </section>
 
-      <figure class="cs-shot">
+      <figure class="cs-shot" data-reveal>
           <img src="assets/img/hanover-shot-main.png" alt="Hanover main product shot" width="5481" height="3940" loading="lazy">
         </figure>
 
       <section class="cs-timeline cs-timeline--hanover">
         <div class="cs-timeline__entries">
-          <article class="cs-entry">
+          <article class="cs-entry" data-reveal>
             <div class="cs-entry__node">
               <img src="assets/img/hanover-node-3.png" alt="" width="140" height="140" loading="lazy">
             </div>
@@ -120,7 +120,7 @@
             </div>
           </article>
 
-          <article class="cs-entry">
+          <article class="cs-entry" data-reveal>
             <div class="cs-entry__node">
               <img src="assets/img/hanover-node-4.png" alt="" width="140" height="140" loading="lazy">
             </div>
@@ -138,22 +138,22 @@
       </section>
 
       <div class="cs-gallery">
-          <figure class="cs-gallery__item">
+          <figure class="cs-gallery__item" data-reveal>
             <img src="assets/img/hanover-shot-1.png" alt="Hanover product shot" width="1827" height="1314" loading="lazy">
           </figure>
-          <figure class="cs-gallery__item">
+          <figure class="cs-gallery__item" data-reveal>
             <img src="assets/img/hanover-shot-2.png" alt="Hanover product shot" width="1827" height="1314" loading="lazy">
           </figure>
-          <figure class="cs-gallery__item">
+          <figure class="cs-gallery__item" data-reveal>
             <img src="assets/img/hanover-shot-3.png" alt="Hanover product shot" width="1827" height="1314" loading="lazy">
           </figure>
-          <figure class="cs-gallery__item">
+          <figure class="cs-gallery__item" data-reveal>
             <img src="assets/img/hanover-shot-4.png" alt="Hanover product shot" width="1827" height="1314" loading="lazy">
           </figure>
-          <figure class="cs-gallery__item">
+          <figure class="cs-gallery__item" data-reveal>
             <img src="assets/img/hanover-shot-5.png" alt="Hanover product shot" width="1584" height="1074" loading="lazy">
           </figure>
-          <figure class="cs-gallery__item">
+          <figure class="cs-gallery__item" data-reveal>
             <img src="assets/img/hanover-shot-6.png" alt="Hanover product shot" width="1584" height="1074" loading="lazy">
           </figure>
         </div>
@@ -162,7 +162,7 @@
 
   <!-- ===== FOOTER — keep identical across all pages ===================== -->
   <footer class="site-footer">
-    <div class="container site-footer__inner">
+    <div class="container site-footer__inner" data-reveal="fade">
 
       <div class="site-footer__brand">
         <img class="site-footer__logo" src="assets/img/logo-white.svg" alt="" width="77" height="77">
@@ -187,10 +187,9 @@
           <div class="footer-col">
             <h2 class="footer-col__title">Contact</h2>
             <ul class="footer-col__list">
-              <!-- TODO: replace the two links below with real destinations -->
               <li><a href="https://calendly.com/tomzee/30min">Book a call</a></li>
-              <li><a href="#TODO-linkedin">Find me on LinkedIn</a></li>
-              <li><a href="#TODO-cv">Download CV</a></li>
+              <li><a href="https://www.linkedin.com/in/tomzee/">Find me on LinkedIn</a></li>
+              <li><a href="assets/cv/Nikola-Tomic-Product-Designer-CV.pdf" download>Download CV</a></li>
             </ul>
           </div>
 

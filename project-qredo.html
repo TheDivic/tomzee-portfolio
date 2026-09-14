@@ -25,7 +25,6 @@
       </a>
       <nav class="nav" id="nav" aria-label="Main">
         <a class="nav__link" href="index.html">Home</a>
-        <a class="nav__link" href="profile.html">Profile</a>
         <a class="nav__link" href="projects.html" aria-current="page">Projects</a>
       </nav>
       <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav">
@@ -40,23 +39,24 @@
   <main id="main">
     <section class="cs-hero cs-hero--qredo" style="--cs-title-w: 624px">
       <div class="container cs-hero__inner">
-        <a class="cs-back" href="projects.html">
+        <span class="cs-hero__index" aria-hidden="true">01</span>
+        <a class="cs-back" href="projects.html" data-reveal="fade">
           <img src="assets/img/icon-arrow-left.svg" alt="" width="24" height="24">Projects
         </a>
-        <div class="cs-hero__title">
+        <div class="cs-hero__title" data-reveal data-parallax="0.12">
           <div class="cs-hero__heading">
             <h1 class="cs-hero__name">Qredo</h1>
             <p class="cs-hero__tagline">Scaling to Entrprise-Grade Crypto Trading</p>
           </div>
           <p class="cs-hero__meta">Web App, 2021-2024</p>
         </div>
-        <div class="cs-hero__logo cs-hero__logo--qredo">
+        <div class="cs-hero__logo cs-hero__logo--qredo" data-reveal="fade">
           <img src="assets/img/qredo-logo.png" alt="Qredo logo" width="390" height="175">
         </div>
       </div>
     </section>
 
-    <section class="cs-intro">
+    <section class="cs-intro" data-reveal>
       <div class="cs-intro__inner">
         <div class="cs-intro__text">
           <h2 class="cs-intro__title">Who are Qredo?</h2>
@@ -70,7 +70,7 @@
     <div class="cs-body">
       <section class="cs-timeline cs-timeline--qredo">
         <div class="cs-timeline__entries">
-          <article class="cs-entry">
+          <article class="cs-entry" data-reveal>
             <div class="cs-entry__node">
               <img src="assets/img/qredo-node-1.png" alt="" width="140" height="140" loading="lazy">
             </div>
@@ -85,7 +85,7 @@
             </div>
           </article>
 
-          <article class="cs-entry">
+          <article class="cs-entry" data-reveal>
             <div class="cs-entry__node">
               <img src="assets/img/qredo-node-2.png" alt="" width="140" height="140" loading="lazy">
             </div>
@@ -102,13 +102,13 @@
         </div>
       </section>
 
-      <figure class="cs-shot">
+      <figure class="cs-shot" data-reveal>
           <img src="assets/img/qredo-shot-main.png" alt="Qredo main product shot" width="5481" height="3940" loading="lazy">
         </figure>
 
       <section class="cs-timeline cs-timeline--qredo">
         <div class="cs-timeline__entries">
-          <article class="cs-entry">
+          <article class="cs-entry" data-reveal>
             <div class="cs-entry__node">
               <img src="assets/img/qredo-node-3.png" alt="" width="140" height="140" loading="lazy">
             </div>
@@ -122,7 +122,7 @@
             </div>
           </article>
 
-          <article class="cs-entry">
+          <article class="cs-entry" data-reveal>
             <div class="cs-entry__node">
               <img src="assets/img/qredo-node-4.png" alt="" width="140" height="140" loading="lazy">
             </div>
@@ -139,16 +139,16 @@
       </section>
 
       <div class="cs-gallery">
-          <figure class="cs-gallery__item">
+          <figure class="cs-gallery__item" data-reveal>
             <img src="assets/img/qredo-shot-1.png" alt="Qredo product shot" width="1827" height="1314" loading="lazy">
           </figure>
-          <figure class="cs-gallery__item">
+          <figure class="cs-gallery__item" data-reveal>
             <img src="assets/img/qredo-shot-2.png" alt="Qredo product shot" width="1827" height="1314" loading="lazy">
           </figure>
-          <figure class="cs-gallery__item">
+          <figure class="cs-gallery__item" data-reveal>
             <img src="assets/img/qredo-shot-3.png" alt="Qredo product shot" width="1827" height="1314" loading="lazy">
           </figure>
-          <figure class="cs-gallery__item">
+          <figure class="cs-gallery__item" data-reveal>
             <img src="assets/img/qredo-shot-4.png" alt="Qredo product shot" width="1827" height="1314" loading="lazy">
           </figure>
         </div>
@@ -157,7 +157,7 @@
 
   <!-- ===== FOOTER — keep identical across all pages ===================== -->
   <footer class="site-footer">
-    <div class="container site-footer__inner">
+    <div class="container site-footer__inner" data-reveal="fade">
 
       <div class="site-footer__brand">
         <img class="site-footer__logo" src="assets/img/logo-white.svg" alt="" width="77" height="77">
@@ -182,10 +182,9 @@
           <div class="footer-col">
             <h2 class="footer-col__title">Contact</h2>
             <ul class="footer-col__list">
-              <!-- TODO: replace the two links below with real destinations -->
               <li><a href="https://calendly.com/tomzee/30min">Book a call</a></li>
-              <li><a href="#TODO-linkedin">Find me on LinkedIn</a></li>
-              <li><a href="#TODO-cv">Download CV</a></li>
+              <li><a href="https://www.linkedin.com/in/tomzee/">Find me on LinkedIn</a></li>
+              <li><a href="assets/cv/Nikola-Tomic-Product-Designer-CV.pdf" download>Download CV</a></li>
             </ul>
           </div>
 

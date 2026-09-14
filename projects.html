@@ -25,7 +25,6 @@
       </a>
       <nav class="nav" id="nav" aria-label="Main">
         <a class="nav__link" href="index.html">Home</a>
-        <a class="nav__link" href="profile.html">Profile</a>
         <a class="nav__link" href="projects.html" aria-current="page">Projects</a>
       </nav>
       <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav">
@@ -39,10 +38,11 @@
 
   <main id="main">
     <section class="container projects-intro">
-      <h1 class="display projects-intro__title">A cherry-picked collection of my most presentable projects.</h1>
+      <p class="section-label" data-reveal="fade">01 — Selected work</p>
+      <h1 class="display projects-intro__title" data-reveal>A cherry-picked collection of my most presentable projects.</h1>
 
       <div class="project-list">
-          <article class="project-card">
+          <article class="project-card" data-reveal>
             <div class="project-card__body">
               <div class="project-card__head">
                 <h2 class="project-card__title">Qredo</h2>
@@ -52,7 +52,7 @@
                 </div>
               </div>
               <div class="project-card__actions">
-                <a class="btn btn--primary btn--lg" href="project-qredo.html">View project</a>
+                <a class="btn btn--primary btn--lg" href="project-qredo.html" data-magnetic>View project</a>
                 <!-- TODO: replace with the real Qredo website -->
                 <a class="btn btn--quiet btn--lg" href="#TODO-visit-qredo">Visit website</a>
               </div>
@@ -64,7 +64,7 @@
             </div>
           </article>
 
-          <article class="project-card project-card--reverse">
+          <article class="project-card project-card--reverse" data-reveal>
             <div class="project-card__body">
               <div class="project-card__head">
                 <h2 class="project-card__title">Hanover Research</h2>
@@ -74,7 +74,7 @@
                 </div>
               </div>
               <div class="project-card__actions">
-                <a class="btn btn--primary btn--lg" href="project-hanover.html">View project</a>
+                <a class="btn btn--primary btn--lg" href="project-hanover.html" data-magnetic>View project</a>
                 <!-- TODO: replace with the real Hanover Research website -->
                 <a class="btn btn--quiet btn--lg" href="#TODO-visit-hanover">Visit website</a>
               </div>
@@ -86,7 +86,7 @@
             </div>
           </article>
 
-          <article class="project-card">
+          <article class="project-card" data-reveal>
             <div class="project-card__body">
               <div class="project-card__head">
                 <h2 class="project-card__title">Lokal (weRate)</h2>
@@ -96,7 +96,7 @@
                 </div>
               </div>
               <div class="project-card__actions">
-                <a class="btn btn--primary btn--lg" href="project-lokal.html">View project</a>
+                <a class="btn btn--primary btn--lg" href="project-lokal.html" data-magnetic>View project</a>
                 <!-- TODO: replace with the real Lokal (weRate) website -->
                 <a class="btn btn--quiet btn--lg" href="#TODO-visit-lokal">Visit website</a>
               </div>
@@ -113,7 +113,7 @@
 
   <!-- ===== FOOTER — keep identical across all pages ===================== -->
   <footer class="site-footer">
-    <div class="container site-footer__inner">
+    <div class="container site-footer__inner" data-reveal="fade">
 
       <div class="site-footer__brand">
         <img class="site-footer__logo" src="assets/img/logo-white.svg" alt="" width="77" height="77">
@@ -138,10 +138,9 @@
           <div class="footer-col">
             <h2 class="footer-col__title">Contact</h2>
             <ul class="footer-col__list">
-              <!-- TODO: replace the two links below with real destinations -->
               <li><a href="https://calendly.com/tomzee/30min">Book a call</a></li>
-              <li><a href="#TODO-linkedin">Find me on LinkedIn</a></li>
-              <li><a href="#TODO-cv">Download CV</a></li>
+              <li><a href="https://www.linkedin.com/in/tomzee/">Find me on LinkedIn</a></li>
+              <li><a href="assets/cv/Nikola-Tomic-Product-Designer-CV.pdf" download>Download CV</a></li>
             </ul>
           </div>
 

@@ -17,10 +17,11 @@ Optimise every decision for "he can still change this in a year without help".
 
 ## Structure
 
-Six flat HTML pages, one stylesheet, one small vanilla script, one image folder:
+Five flat HTML pages, one stylesheet, one small vanilla script, one image folder:
 
 ```
-index.html  profile.html  projects.html
+index.html                 home (hero, bio, testimonials)
+projects.html
 project-qredo.html  project-hanover.html  project-lokal.html
 css/style.css        all styling
 js/main.js           sticky header behaviour (vanilla JS, no libraries)
@@ -29,10 +30,10 @@ assets/cv/           CV pdf
 .nojekyll            stops GitHub running Jekyll over the files
 ```
 
-## The header and footer are duplicated in all six pages
+## The header and footer are duplicated in all five pages
 
 This is deliberate — it is the cost of having no build step. **When you change the
-header or footer, change it in all six files in the same commit.** Verify with:
+header or footer, change it in all five files in the same commit.** Verify with:
 
 ```
 grep -c 'site-footer__legal' *.html     # must print 1 for every page
