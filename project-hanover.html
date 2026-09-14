@@ -23,11 +23,17 @@
       <a href="index.html" aria-label="Design by Tom — home">
         <img class="site-header__logo" src="assets/img/logo-white.svg" alt="Design by Tom" width="77" height="77">
       </a>
-      <nav class="nav" aria-label="Main">
+      <nav class="nav" id="nav" aria-label="Main">
         <a class="nav__link" href="index.html">Home</a>
         <a class="nav__link" href="profile.html">Profile</a>
         <a class="nav__link" href="projects.html" aria-current="page">Projects</a>
       </nav>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav">
+        <span class="nav-toggle__bar" aria-hidden="true"></span>
+        <span class="nav-toggle__bar" aria-hidden="true"></span>
+        <span class="nav-toggle__bar" aria-hidden="true"></span>
+        <span class="visually-hidden">Menu</span>
+      </button>
     </div>
   </header>
 
@@ -44,7 +50,7 @@
           </div>
           <p class="cs-hero__meta">Web App, 2021-2024</p>
         </div>
-        <img class="cs-hero__logo" src="assets/img/hanover-logo.svg" alt="Hanover Research logo" width="285" height="65" style="transform: rotate(180deg) scaleX(-1)">
+        <img class="cs-hero__logo cs-hero__logo--hanover" src="assets/img/hanover-logo.svg" alt="Hanover Research logo" width="285" height="65" style="transform: rotate(180deg) scaleX(-1)">
       </div>
     </section>
 
@@ -60,58 +66,65 @@
     </section>
 
     <div class="cs-body">
-      <section class="cs-timeline">
-          <div class="cs-timeline__rail">
-            <div class="placeholder placeholder--rail" style="aspect-ratio: 187 / 504;">
-            <span>Timeline illustrations<code>assets/img/hanover-rail-1.png</code></span>
-          </div>
-          </div>
-          <div class="cs-timeline__entries">
-            <article class="cs-entry">
+      <section class="cs-timeline cs-timeline--hanover">
+        <div class="cs-timeline__entries">
+          <article class="cs-entry">
+            <div class="cs-entry__node">
+              <img src="assets/img/hanover-node-1.png" alt="" width="140" height="140" loading="lazy">
+            </div>
+            <div class="cs-entry__text">
               <div class="cs-entry__head">
                 <h2 class="cs-entry__title">My role and responsibilities</h2>
-              <p class="cs-entry__lede">I performed tasks of a permanent and main Product Designer on the project.</p>
+                <p class="cs-entry__lede">I performed tasks of a permanent and main Product Designer on the project.</p>
               </div>
               <div class="cs-entry__body">
                 <p>Our product design and development agency was tasked with creating a research and insights dashboard that the clients would use as a UX-friendly access point for getting access to a variety of content that the Hanover Research offers.</p>
               </div>
-            </article>
+            </div>
+          </article>
 
-            <article class="cs-entry">
+          <article class="cs-entry">
+            <div class="cs-entry__node">
+              <img src="assets/img/hanover-node-2.png" alt="" width="140" height="140" loading="lazy">
+            </div>
+            <div class="cs-entry__text">
               <div class="cs-entry__head">
                 <h2 class="cs-entry__title">Opportunities and goals of the project</h2>
-              <p class="cs-entry__lede">Making a dashboard that is user-friendly and easy to use.</p>
+                <p class="cs-entry__lede">Making a dashboard that is user-friendly and easy to use.</p>
               </div>
               <div class="cs-entry__body">
                 <p>As an already established company, Hanover Research contacted our design and development agency to help boost their users&rsquo; access to a variety of research material the company offers. As such, during the discovery, it was decided that a comprehensive dashboard be created. This involved communicating back-and-forth with the client and ensuring their company needs are covered. Naturally, this was all done with the help of a project manager and a team of developers, with whom the design team collaborated tirelessly.</p>
               </div>
-            </article>
-          </div>
-        </section>
+            </div>
+          </article>
+        </div>
+      </section>
 
       <figure class="cs-shot">
-          <div class="placeholder" style="aspect-ratio: 1280 / 808;">
-            <span>Main product shot<code>assets/img/hanover-shot-main.png</code></span>
-          </div>
+          <img src="assets/img/hanover-shot-main.png" alt="Hanover main product shot" width="5481" height="3940" loading="lazy">
         </figure>
 
-      <section class="cs-timeline">
-          <div class="cs-timeline__rail">
-            <div class="placeholder placeholder--rail" style="aspect-ratio: 187 / 542;">
-            <span>Timeline illustrations<code>assets/img/hanover-rail-2.png</code></span>
-          </div>
-          </div>
-          <div class="cs-timeline__entries">
-            <article class="cs-entry">
+      <section class="cs-timeline cs-timeline--hanover">
+        <div class="cs-timeline__entries">
+          <article class="cs-entry">
+            <div class="cs-entry__node">
+              <img src="assets/img/hanover-node-3.png" alt="" width="140" height="140" loading="lazy">
+            </div>
+            <div class="cs-entry__text">
               <div class="cs-entry__head">
                 <h2 class="cs-entry__title">Biggest challenge faced</h2>
               </div>
               <div class="cs-entry__body">
                 <p>This project involved setting up a detailed design system, to cater to comprehensive responsive measurements. This included non-traditional sizes such as phone portrait, phone landscape, tablet portrait, tablet landscape, desktop (1440px), as well as desktop (1920px) sizes. Although this proved to be quite a challenge at certain points, I am happy to say that we&rsquo;ve managed to tackle the demanding responsive screen types for Hanover Research.</p>
               </div>
-            </article>
+            </div>
+          </article>
 
-            <article class="cs-entry">
+          <article class="cs-entry">
+            <div class="cs-entry__node">
+              <img src="assets/img/hanover-node-4.png" alt="" width="140" height="140" loading="lazy">
+            </div>
+            <div class="cs-entry__text">
               <div class="cs-entry__head">
                 <h2 class="cs-entry__title">Outcome and learnings</h2>
               </div>
@@ -119,40 +132,29 @@
                 <p>I&rsquo;m especially proud of how the new user tour (which I spearheaded) came out; even though we had a lot of information to display, the tour was effective in making everything appear clean, simple, and easy to use, thereby ensuring user retention. This part of the app was met with positive feedback.</p>
                 <p>Ultimately, the project was completed successfully and to complete client&rsquo;s satisfaction, which is something I wear as a badge of honor.</p>
               </div>
-            </article>
-          </div>
-        </section>
+            </div>
+          </article>
+        </div>
+      </section>
 
       <div class="cs-gallery">
           <figure class="cs-gallery__item">
-            <div class="placeholder" style="aspect-ratio: 405 / 256;">
-            <span>Product shot<code>assets/img/hanover-shot-1.png</code></span>
-          </div>
+            <img src="assets/img/hanover-shot-1.png" alt="Hanover product shot" width="1827" height="1314" loading="lazy">
           </figure>
           <figure class="cs-gallery__item">
-            <div class="placeholder" style="aspect-ratio: 405 / 256;">
-            <span>Product shot<code>assets/img/hanover-shot-2.png</code></span>
-          </div>
+            <img src="assets/img/hanover-shot-2.png" alt="Hanover product shot" width="1827" height="1314" loading="lazy">
           </figure>
           <figure class="cs-gallery__item">
-            <div class="placeholder" style="aspect-ratio: 405 / 256;">
-            <span>Product shot<code>assets/img/hanover-shot-3.png</code></span>
-          </div>
+            <img src="assets/img/hanover-shot-3.png" alt="Hanover product shot" width="1827" height="1314" loading="lazy">
           </figure>
           <figure class="cs-gallery__item">
-            <div class="placeholder" style="aspect-ratio: 405 / 256;">
-            <span>Product shot<code>assets/img/hanover-shot-4.png</code></span>
-          </div>
+            <img src="assets/img/hanover-shot-4.png" alt="Hanover product shot" width="1827" height="1314" loading="lazy">
           </figure>
           <figure class="cs-gallery__item">
-            <div class="placeholder" style="aspect-ratio: 405 / 256;">
-            <span>Product shot<code>assets/img/hanover-shot-5.png</code></span>
-          </div>
+            <img src="assets/img/hanover-shot-5.png" alt="Hanover product shot" width="1584" height="1074" loading="lazy">
           </figure>
           <figure class="cs-gallery__item">
-            <div class="placeholder" style="aspect-ratio: 405 / 256;">
-            <span>Product shot<code>assets/img/hanover-shot-6.png</code></span>
-          </div>
+            <img src="assets/img/hanover-shot-6.png" alt="Hanover product shot" width="1584" height="1074" loading="lazy">
           </figure>
         </div>
     </div>
@@ -185,8 +187,8 @@
           <div class="footer-col">
             <h2 class="footer-col__title">Contact</h2>
             <ul class="footer-col__list">
-              <!-- TODO: replace the three links below with real destinations -->
-              <li><a href="#TODO-book-a-call">Book a call</a></li>
+              <!-- TODO: replace the two links below with real destinations -->
+              <li><a href="https://calendly.com/tomzee/30min">Book a call</a></li>
               <li><a href="#TODO-linkedin">Find me on LinkedIn</a></li>
               <li><a href="#TODO-cv">Download CV</a></li>
             </ul>

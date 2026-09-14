@@ -39,7 +39,7 @@ grep -c 'site-footer__legal' *.html     # must print 1 for every page
 ```
 
 Each page marks its own nav item with `aria-current="page"`. Case-study pages add
-`site-header--overlay` to the header and use the white logo, because their header
+`site-header--on-dark` to the header and use the white logo, because their header
 sits on top of a dark hero image.
 
 ## Styling
@@ -56,9 +56,14 @@ sits on top of a dark hero image.
 
 ## Not done yet
 
-- **No mobile or tablet layout.** The Figma only ever specified 1440px and 1920px.
-  Below roughly 1000px the site is cramped but not broken. Mobile is a deliberate
-  next step to design with Tom, not something to improvise.
+- **Responsive layout.** The site has two breakpoints, in the "Responsive layout"
+  section at the bottom of css/style.css: 1000px (tablet, two-column modules
+  collapse) and 640px (phone, single column, scaled type; the hamburger opens a
+  fullscreen menu of centred links). The Figma never specified these - they were
+  designed pragmatically. If a breakpoint needs adjusting, change it in that one
+  section. The fullscreen phone menu is keyed off a `.menu-open` class on `<body>`
+  (toggled by js/main.js), and its `backdrop-filter` is disabled while open so the
+  menu isn't trapped inside the sticky header.
 - **22 images are still placeholders** on the case-study pages, and **6 links are
   `#TODO` stubs.** Both lists are in README.md. When replacing a placeholder, swap
   the whole `<div class="placeholder">` for an `<img>` with explicit `width` and

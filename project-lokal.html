@@ -23,11 +23,17 @@
       <a href="index.html" aria-label="Design by Tom — home">
         <img class="site-header__logo" src="assets/img/logo-white.svg" alt="Design by Tom" width="77" height="77">
       </a>
-      <nav class="nav" aria-label="Main">
+      <nav class="nav" id="nav" aria-label="Main">
         <a class="nav__link" href="index.html">Home</a>
         <a class="nav__link" href="profile.html">Profile</a>
         <a class="nav__link" href="projects.html" aria-current="page">Projects</a>
       </nav>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav">
+        <span class="nav-toggle__bar" aria-hidden="true"></span>
+        <span class="nav-toggle__bar" aria-hidden="true"></span>
+        <span class="nav-toggle__bar" aria-hidden="true"></span>
+        <span class="visually-hidden">Menu</span>
+      </button>
     </div>
   </header>
 
@@ -44,7 +50,7 @@
           </div>
           <p class="cs-hero__meta">Mobile App, 2025-2026</p>
         </div>
-        <img class="cs-hero__logo" src="assets/img/lokal-logo.png" alt="Lokal logo" width="130" height="130">
+        <img class="cs-hero__logo cs-hero__logo--lokal" src="assets/img/lokal-logo.png" alt="Lokal logo" width="130" height="130">
       </div>
     </section>
 
@@ -60,49 +66,51 @@
     </section>
 
     <div class="cs-body">
-      <section class="cs-timeline">
-          <div class="cs-timeline__rail">
-            <div class="placeholder placeholder--rail" style="aspect-ratio: 187 / 534;">
-            <span>Timeline illustrations<code>assets/img/lokal-rail-1.png</code></span>
-          </div>
-          </div>
-          <div class="cs-timeline__entries">
-            <article class="cs-entry">
+      <section class="cs-timeline cs-timeline--lokal">
+        <div class="cs-timeline__entries">
+          <article class="cs-entry">
+            <div class="cs-entry__node">
+              <img src="assets/img/lokal-node-1.png" alt="" width="140" height="140" loading="lazy">
+            </div>
+            <div class="cs-entry__text">
               <div class="cs-entry__head">
                 <h2 class="cs-entry__title">My role and responsibilities</h2>
-              <p class="cs-entry__lede">UX design lead</p>
+                <p class="cs-entry__lede">UX design lead</p>
               </div>
               <div class="cs-entry__body">
                 <p>I joined weRate as a lead (and sole) designer on the project. Although the app was already functioning at the point, it had a long way to realizing its true potential. At weRate, I successfully juggled accomplishing the company&rsquo;s design needs, while finding time to work on the complete visual and functional re-haul of the app.</p>
               </div>
-            </article>
+            </div>
+          </article>
 
-            <article class="cs-entry">
+          <article class="cs-entry">
+            <div class="cs-entry__node">
+              <img src="assets/img/lokal-node-2.png" alt="" width="140" height="140" loading="lazy">
+            </div>
+            <div class="cs-entry__text">
               <div class="cs-entry__head">
                 <h2 class="cs-entry__title">Opportunities and goals of the project</h2>
-              <p class="cs-entry__lede">Knocking out daily design and maintenance activities, while finding time to redesign and improve the app&rsquo;s experience.</p>
+                <p class="cs-entry__lede">Knocking out daily design and maintenance activities, while finding time to redesign and improve the app&rsquo;s experience.</p>
               </div>
               <div class="cs-entry__body">
                 <p>Even before I was officially onboarded, the first thing I said to the CEO regarding the then-state of weRate was &ldquo;weRate doesn&rsquo;t know what it is&rdquo;. At the state the app was when I joined, the product had the functionality of checking in to and reviewing venues, but it didn&rsquo;t feel like a check-in app. There was no map, and it was riddled with features of questionable necessity. This provided a great opportunity to make the app look and feel great, while retaining the old and adding new functionalities.</p>
               </div>
-            </article>
-          </div>
-        </section>
+            </div>
+          </article>
+        </div>
+      </section>
 
       <figure class="cs-shot">
-          <div class="placeholder" style="aspect-ratio: 1280 / 808;">
-            <span>Main product shot<code>assets/img/lokal-shot-main.png</code></span>
-          </div>
+          <img src="assets/img/lokal-shot-main.png" alt="Lokal main product shot" width="4161" height="4153" loading="lazy">
         </figure>
 
-      <section class="cs-timeline">
-          <div class="cs-timeline__rail">
-            <div class="placeholder placeholder--rail" style="aspect-ratio: 187 / 689;">
-            <span>Timeline illustrations<code>assets/img/lokal-rail-2.png</code></span>
-          </div>
-          </div>
-          <div class="cs-timeline__entries">
-            <article class="cs-entry">
+      <section class="cs-timeline cs-timeline--lokal">
+        <div class="cs-timeline__entries">
+          <article class="cs-entry">
+            <div class="cs-entry__node">
+              <img src="assets/img/lokal-node-3.png" alt="" width="140" height="140" loading="lazy">
+            </div>
+            <div class="cs-entry__text">
               <div class="cs-entry__head">
                 <h2 class="cs-entry__title">Biggest challenge faced</h2>
               </div>
@@ -110,34 +118,34 @@
                 <p>The leadership was tough to break when I proposed a re-haul of the app. So, I kept quiet and focused on fixing the small UX and design system issues. In fact, I completely reimagined the design system, improving it in every sense. However, I wasn&rsquo;t gonna go down quietly.</p>
                 <p>Under wraps, as a sole designer of the app, I took the risk of leveraging various AI tools to reimagine and redesign the entire app - in terms of looks, branding, as well as functionality. I stripped away a lot of unnecessary reward features, and the result was exactly what I wanted to create - a check in and review app that doesn&rsquo;t ask too many questions, yet provides enough feedback for the system to work.</p>
               </div>
-            </article>
+            </div>
+          </article>
 
-            <article class="cs-entry">
+          <article class="cs-entry">
+            <div class="cs-entry__node">
+              <img src="assets/img/lokal-node-4.png" alt="" width="140" height="140" loading="lazy">
+            </div>
+            <div class="cs-entry__text">
               <div class="cs-entry__head">
                 <h2 class="cs-entry__title">Outcome and learnings</h2>
               </div>
               <div class="cs-entry__body">
                 <p>The greatest challenge with Lokal is also where I learned humility as a designer. Even though the management loved the work I did and despite the fact that the redesign was now officially planned and set in motion, there was some pushback in terms of the features I removed. This is where I learned that it&rsquo;s not all about the UX and the functionality of a product - it&rsquo;s very much about the business needs. Setting aside my ego (this was a tough one), I successfully redesigned the app, to the requirements of the leadership.</p>
               </div>
-            </article>
-          </div>
-        </section>
+            </div>
+          </article>
+        </div>
+      </section>
 
       <div class="cs-gallery">
           <figure class="cs-gallery__item">
-            <div class="placeholder" style="aspect-ratio: 405 / 256;">
-            <span>Product shot<code>assets/img/lokal-shot-1.png</code></span>
-          </div>
+            <img src="assets/img/lokal-shot-1.png" alt="Lokal product shot" width="1470" height="920" loading="lazy">
           </figure>
           <figure class="cs-gallery__item">
-            <div class="placeholder" style="aspect-ratio: 405 / 256;">
-            <span>Product shot<code>assets/img/lokal-shot-2.png</code></span>
-          </div>
+            <img src="assets/img/lokal-shot-2.png" alt="Lokal product shot" width="1317" height="1255" loading="lazy">
           </figure>
           <figure class="cs-gallery__item">
-            <div class="placeholder" style="aspect-ratio: 405 / 256;">
-            <span>Product shot<code>assets/img/lokal-shot-3.png</code></span>
-          </div>
+            <img src="assets/img/lokal-shot-3.png" alt="Lokal product shot" width="1740" height="920" loading="lazy">
           </figure>
         </div>
     </div>
@@ -170,8 +178,8 @@
           <div class="footer-col">
             <h2 class="footer-col__title">Contact</h2>
             <ul class="footer-col__list">
-              <!-- TODO: replace the three links below with real destinations -->
-              <li><a href="#TODO-book-a-call">Book a call</a></li>
+              <!-- TODO: replace the two links below with real destinations -->
+              <li><a href="https://calendly.com/tomzee/30min">Book a call</a></li>
               <li><a href="#TODO-linkedin">Find me on LinkedIn</a></li>
               <li><a href="#TODO-cv">Download CV</a></li>
             </ul>

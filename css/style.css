@@ -44,7 +44,7 @@
   /* ---- Spacing & shape -------------------------------------------------- */
   --gutter:      80px;  /* space between content and the window edge         */
   --content-max: 1280px;/* the content column never grows past this          */
-  --header-h:    141px; /* header height: 32px padding + 77px logo + 32px    */
+  --header-h:    80px;  /* header height: 12px padding + 56px logo + 12px     */
   --radius:      16px;
   --radius-lg:   24px;
   --radius-btn:  8px;
@@ -189,7 +189,7 @@ ul { margin: 0; padding: 0; list-style: none; }
   position: sticky;
   top: 0;
   z-index: 2;
-  padding: 32px 0;
+  padding: 12px 0;
   margin-bottom: calc(-1 * var(--header-h));
 }
 
@@ -221,13 +221,48 @@ ul { margin: 0; padding: 0; list-style: none; }
 .site-header--on-dark.is-stuck .nav__link:hover,
 .site-header--on-dark.is-stuck .nav__link[aria-current="page"] { color: var(--c-purple); }
 
+/* Hamburger button. Hidden on desktop - it only appears on phones, where the
+   responsive section turns it into the nav control. */
+.nav-toggle {
+  display: none;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+.nav-toggle__bar {
+  display: block;
+  width: 26px;
+  height: 2px;
+  border-radius: 1px;
+  background: var(--c-ink);
+  transition: transform 0.25s ease, opacity 0.2s ease;
+}
+
+/* Over the dark case-study heroes the bars start white, then go dark once
+   the frosted bar appears (mirrors the logo swap in js/main.js). */
+.site-header--on-dark .nav-toggle__bar { background: var(--c-on-purple); }
+.site-header--on-dark.is-stuck .nav-toggle__bar { background: var(--c-ink); }
+
 .site-header__inner {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-.site-header__logo { width: 77px; height: 77px; }
+.site-header__logo {
+  width: 56px;
+  height: 56px;
+  transition: transform 0.3s cubic-bezier(0.2, 0.9, 0.3, 1.2);
+}
+.site-header__logo:hover { transform: scale(1.1); }
 
 .nav { display: flex; align-items: center; gap: 32px; }
 
@@ -236,7 +271,7 @@ ul { margin: 0; padding: 0; list-style: none; }
   display: flex;
   align-items: center;
   height: 32px;
-  font-size: var(--t-nav);
+  font-size: 17px;
   text-decoration: none;
   color: var(--c-ink);
 }
@@ -542,9 +577,9 @@ ul { margin: 0; padding: 0; list-style: none; }
   gap: 32px;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
-  padding-bottom: 8px;
-  scrollbar-width: thin;
+  scrollbar-width: none;
 }
+.testimonials__track::-webkit-scrollbar { display: none; }
 
 .testimonial {
   flex: 0 0 405px;
@@ -666,18 +701,57 @@ ul { margin: 0; padding: 0; list-style: none; }
 .cs-body { padding: 96px 0; display: flex; flex-direction: column; gap: 128px; }
 
 .cs-timeline {
+  position: relative;  /* the connecting line is drawn relative to this */
   width: min(1062px, 100% - (var(--gutter) * 2));
   margin-inline: auto;
   display: flex;
   gap: 32px;
-  align-items: flex-start;
+  align-items: stretch;
 }
 
-.cs-timeline__rail { flex: 0 0 187px; }
+/* The vertical connector running behind the illustration circles */
+.cs-timeline::before {
+  content: "";
+  position: absolute;
+  left: 68px;      /* centre of a 140px circle, minus half the 4px line */
+  top: 70px;       /* centre of the first circle */
+  bottom: 70px;    /* centre of the last circle */
+  width: 4px;
+  background: #fff;
+  pointer-events: none;
+}
+
+/* Each project colours its own timeline illustrations */
+.cs-timeline--qredo   { --tl-color: var(--c-qredo); }
+.cs-timeline--hanover { --tl-color: var(--c-hanover); }
+.cs-timeline--lokal   { --tl-color: var(--c-lokal); }
 
 .cs-timeline__entries { flex: 1 1 auto; display: flex; flex-direction: column; gap: 64px; }
 
-.cs-entry { display: flex; flex-direction: column; gap: 32px; }
+/* Each entry carries its own illustration circle, aligned to its heading */
+.cs-entry { display: flex; align-items: flex-start; gap: 44px; }
+
+/* The circle holding each illustration, sitting on the connector */
+.cs-entry__node {
+  position: relative;
+  flex: 0 0 140px;
+  width: 140px;
+  height: 140px;
+  border: 4px solid #fff;
+  border-radius: 50%;
+  padding: 12px;
+  overflow: hidden;
+  background: var(--c-white);
+}
+
+.cs-entry__node img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cs-entry__text { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 32px; }
+
 .cs-entry__head { display: flex; flex-direction: column; gap: 16px; }
 .cs-entry__title { font-size: 48px; font-weight: 400; line-height: 1.2; }
 .cs-entry__lede { font-size: var(--t-lead); line-height: 1.2; }
@@ -694,12 +768,13 @@ ul { margin: 0; padding: 0; list-style: none; }
 }
 .cs-shot img { width: 100%; height: auto; }
 
-/* Three-up gallery of smaller shots */
+/* Product screens in a 2-column grid — the same treatment the reference
+   case studies give their mockups. */
 .cs-gallery {
   width: min(var(--content-max), 100% - (var(--gutter) * 2));
   margin-inline: auto;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 1fr 1fr;
   gap: 32px;
 }
 
@@ -707,8 +782,14 @@ ul { margin: 0; padding: 0; list-style: none; }
   background: var(--c-white);
   border-radius: var(--radius);
   overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.cs-gallery__item img { width: 100%; height: auto; }
+.cs-gallery__item img { width: 100%; height: auto; display: block; }
+
+/* When the last item is alone in a row, span both columns */
+.cs-gallery__item:last-child:nth-child(odd) { grid-column: 1 / -1; }
 
 /* ==========================================================================
    Image placeholders
@@ -740,5 +821,226 @@ ul { margin: 0; padding: 0; list-style: none; }
   color: var(--c-purple);
 }
 
-/* The timeline rail placeholder is tall and narrow, so it gets no panel */
-.placeholder--rail { background: transparent; }
+/* ==========================================================================
+   Responsive layout
+   --------------------------------------------------------------------------
+   Two deliberate breakpoints, min-width-first so the desktop rules above are
+   the baseline and these only relax the layout for smaller windows:
+
+     1000px  tablet — wide two-column modules collapse to single column
+     640px   phone  — full single column, scaled-down type, hamburger nav
+   ========================================================================== */
+
+/* ---- Tablet (1000px and below) ------------------------------------------- */
+
+@media (max-width: 1000px) {
+  :root { --gutter: 48px; }
+
+  /* Profile: bio and card stack — the card stretches across the column
+     instead of keeping its slim desktop width. */
+  .profile { padding: 140px 0 80px; }
+  .profile__top { flex-direction: column; align-items: flex-start; gap: 80px; }
+  .profile__bio { width: auto; }
+  .profile-card { width: 100%; }
+
+  /* Projects: card stacks, the tile keeps its square proportions */
+  .projects-intro { padding: 140px 0 80px; }
+  .project-card { flex-direction: column; align-items: stretch; gap: 40px; }
+  .project-card--reverse { flex-direction: column; }
+  .project-card__body { flex: none; }
+  .tile { width: 480px; height: 480px; align-self: center; }
+
+  /* Footer: columns become one */
+  .footer-cols { grid-template-columns: 1fr; gap: 48px; }
+  .site-footer { padding: 80px 0 64px; }
+  .site-footer__inner { gap: 64px; }
+}
+
+/* ---- Phone (640px and below) ---------------------------------------------- */
+
+@media (max-width: 640px) {
+  :root {
+    --gutter: 20px;
+    --t-hero: 40px;
+    --t-h2:   26px;
+    --t-h3:   24px;
+    --t-lead: 18px;
+    --t-nav:  18px;
+  }
+
+  /* ------------------------------------------------------------------ */
+  /* Header: the hamburger opens a fullscreen menu of centred links.     */
+  /* The menu is shown/hidden by a .menu-open class on <body>. Keeping    */
+  /* all open-state rules behind that class means an older browser that  */
+  /* can't apply them simply never shows a menu — never a broken panel.  */
+  /* ------------------------------------------------------------------ */
+
+  .nav-toggle { display: flex; position: relative; z-index: 4; }
+
+  .nav {
+    position: fixed;
+    inset: 0;
+    z-index: 3;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 0 var(--gutter);
+    background: var(--c-white);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(12px);
+    transition: opacity 0.25s ease, transform 0.25s ease, visibility 0s linear 0.25s;
+  }
+
+  .nav__link {
+    height: 48px;
+    padding: 0 16px;
+    border-radius: var(--radius-btn);
+    font-family: var(--font-display);
+    font-size: var(--t-h2);
+    color: var(--c-ink);
+  }
+  .nav__link:hover,
+  .nav__link[aria-current="page"] { color: var(--c-purple); }
+
+  /* Case-study headers sit over dark heroes, so everything inside the
+     white menu is forced back to the normal light-theme colours. */
+  .site-header--on-dark .nav__link { color: var(--c-ink); }
+  .site-header--on-dark .nav__link:hover,
+  .site-header--on-dark .nav__link[aria-current="page"] { color: var(--c-purple); }
+
+  /* ---- Open state ---------------------------------------------------- */
+
+  body.menu-open { overflow: hidden; }
+
+  body.menu-open .nav {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+  }
+
+  /* The burger floats above the fullscreen menu and morphs into a close
+     ✕, so it doubles as the close button. */
+  body.menu-open .nav-toggle__bar { background: var(--c-ink); }
+  body.menu-open .nav-toggle__bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+  body.menu-open .nav-toggle__bar:nth-child(2) { opacity: 0; }
+  body.menu-open .nav-toggle__bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+  /* The desktop header's current-page hairline sits at the bottom of its
+     click row. In the menu the links are tall, so that hairline is dropped
+     and an underline is drawn under the text instead — on hover, and pinned
+     to the current page, exactly like the desktop links. Hover means little
+     on a touch screen, so :active and :focus-visible show it on tap/keyboard
+     focus too. */
+  body.menu-open .nav__link[aria-current="page"]::after { display: none; }
+  body.menu-open .nav__link:hover,
+  body.menu-open .nav__link:active,
+  body.menu-open .nav__link:focus-visible,
+  body.menu-open .nav__link[aria-current="page"] {
+    color: var(--c-purple);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+
+  /* The frosted sticky bar uses backdrop-filter, which would otherwise
+     contain the fixed menu inside the header. It is flattened while the
+     menu is open. */
+  body.menu-open .site-header.is-stuck {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    background: var(--c-white);
+  }
+
+  /* ------------------------------------------------------------------ */
+  /* Home                                                                */
+  /* ------------------------------------------------------------------ */
+
+  .home-hero { min-height: 480px; }
+
+  /* ------------------------------------------------------------------ */
+  /* Projects                                                            */
+  /* ------------------------------------------------------------------ */
+
+  .projects-intro { padding: 96px 0 48px; }
+  .projects-intro__title { margin-bottom: 40px; }
+
+  .project-card { padding: 20px; gap: 28px; }
+  .project-card__title { font-size: 40px; }
+  .project-card__tagline { font-size: 26px; }
+  .project-card__actions { flex-wrap: wrap; gap: 16px; }
+
+  .tile { width: 100%; height: auto; aspect-ratio: 1 / 1; }
+  .tile__window--qredo   { width: 100px; height: 102px; }
+  .tile__window--hanover { width: 180px; height: 41px; }
+  .tile__window--lokal   { width: 260px; height: 260px; }
+
+  /* ------------------------------------------------------------------ */
+  /* Profile                                                             */
+  /* ------------------------------------------------------------------ */
+
+  .profile { padding: 72px 0 56px; gap: 64px; }
+  .profile__top { gap: 56px; }
+
+  .profile-card { width: 100%; padding: 24px; gap: 32px; }
+  .profile-card__photo {
+    width: min(360px, 100%);
+    height: auto;
+    aspect-ratio: 1 / 1;
+  }
+  .profile-card__photo img {
+    width: auto;
+    height: 100%;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .profile-copy { line-height: 30px; }
+
+  .testimonials__title { font-size: 28px; }
+  .testimonial { flex: 0 0 100%; }
+
+  /* ------------------------------------------------------------------ */
+  /* Case studies                                                        */
+  /* ------------------------------------------------------------------ */
+
+  .cs-hero { height: 560px; }
+  .cs-back { top: 116px; }
+  .cs-hero__title { top: 220px; height: auto; width: 100%; gap: 48px; }
+  .cs-hero__heading { gap: 16px; }
+  .cs-hero__name { font-size: 52px; }
+  .cs-hero__tagline { font-size: 26px; }
+  .cs-hero__meta { font-size: 20px; }
+  .cs-hero__logo { bottom: 32px; }
+  .cs-hero__logo--qredo   { width: 96px; height: 89px; }
+  .cs-hero__logo--hanover { width: 160px; height: auto; }
+  .cs-hero__logo--lokal   { width: 76px; height: auto; }
+
+  .cs-intro { padding: 48px 0; }
+  .cs-intro__inner { gap: 40px; }
+  .cs-intro__title { font-size: 28px; }
+  .cs-intro__body { line-height: 30px; }
+
+  .cs-body { padding: 64px 0; gap: 64px; }
+  .cs-timeline { flex-direction: column; gap: 32px; }
+  .cs-timeline::before, .cs-entry__node { display: none; }
+  .cs-timeline__entries { gap: 48px; }
+  .cs-entry__title { font-size: 28px; }
+  .cs-entry__lede { font-size: 18px; }
+  .cs-entry__body { line-height: 30px; }
+  .cs-gallery { grid-template-columns: 1fr; gap: 16px; }
+
+  /* ------------------------------------------------------------------ */
+  /* Buttons & footer                                                    */
+  /* ------------------------------------------------------------------ */
+
+  .btn--lg { padding: 14px 24px; }
+  .btn--outline { padding: 14px 24px; }
+
+  .site-footer { padding: 56px 0 48px; }
+  .site-footer__inner { gap: 48px; }
+  .site-footer__brand { gap: 16px; }
+  .site-footer__logo { width: 56px; height: 56px; }
+}

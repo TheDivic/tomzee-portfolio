@@ -39,32 +39,19 @@ to find them all, or ask Claude: *"replace the TODO links with these addresses"*
 
 | Placeholder | What it should point to | Appears on |
 |---|---|---|
-| `#TODO-book-a-call` | Your Calendly / Cal.com booking link | Profile, every footer |
 | `#TODO-linkedin` | Your LinkedIn profile URL | Profile, every footer |
 | `#TODO-cv` | Your CV — put the PDF in `assets/cv/` and link to it | Profile, every footer |
 | `#TODO-visit-qredo` | The real Qredo website | Projects, Qredo case study |
 | `#TODO-visit-hanover` | The real Hanover Research website | Projects, Hanover case study |
 | `#TODO-visit-lokal` | The real Lokal / weRate website | Projects, Lokal case study |
 
-## TO DO: 22 images still need exporting from Figma
+## Product shots: all done
 
-The case study pages currently show dashed boxes where the product shots and the
-little circular illustrations go. Each box names the file it is waiting for.
+Every case-study product screen has been exported from Figma and wired in
+(the circles, the main shots, and all gallery shots). No placeholders remain.
 
-Export each one from Figma as PNG at 2x, save it into `assets/img/` with exactly
-that name, then ask Claude: *"replace the placeholders with the real images"*.
-
-**Qredo** — `qredo-rail-1.png` · `qredo-rail-2.png` · `qredo-shot-main.png` ·
-`qredo-shot-1.png` … `qredo-shot-4.png`
-
-**Hanover** — `hanover-rail-1.png` · `hanover-rail-2.png` · `hanover-shot-main.png` ·
-`hanover-shot-1.png` … `hanover-shot-6.png`
-
-**Lokal** — `lokal-rail-1.png` · `lokal-rail-2.png` · `lokal-shot-main.png` ·
-`lokal-shot-1.png` … `lokal-shot-3.png`
-
-The `rail` images are the tall strips of circular illustrations beside the text.
-The `shot` images are the laptop and phone mockups.
+The `shot` images are the product screens, shown full-width and stacked one after
+another.
 
 ---
 

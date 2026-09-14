@@ -23,11 +23,17 @@
       <a href="index.html" aria-label="Design by Tom — home">
         <img class="site-header__logo" src="assets/img/logo-dark.svg" alt="Design by Tom" width="77" height="77">
       </a>
-      <nav class="nav" aria-label="Main">
+      <nav class="nav" id="nav" aria-label="Main">
         <a class="nav__link" href="index.html" aria-current="page">Home</a>
         <a class="nav__link" href="profile.html">Profile</a>
         <a class="nav__link" href="projects.html">Projects</a>
       </nav>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav">
+        <span class="nav-toggle__bar" aria-hidden="true"></span>
+        <span class="nav-toggle__bar" aria-hidden="true"></span>
+        <span class="nav-toggle__bar" aria-hidden="true"></span>
+        <span class="visually-hidden">Menu</span>
+      </button>
     </div>
   </header>
 
@@ -64,8 +70,8 @@
           <div class="footer-col">
             <h2 class="footer-col__title">Contact</h2>
             <ul class="footer-col__list">
-              <!-- TODO: replace the three links below with real destinations -->
-              <li><a href="#TODO-book-a-call">Book a call</a></li>
+              <!-- TODO: replace the two links below with real destinations -->
+              <li><a href="https://calendly.com/tomzee/30min">Book a call</a></li>
               <li><a href="#TODO-linkedin">Find me on LinkedIn</a></li>
               <li><a href="#TODO-cv">Download CV</a></li>
             </ul>
