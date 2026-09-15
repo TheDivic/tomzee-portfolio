@@ -1405,6 +1405,17 @@ body.cursor-invert.cursor-hot .cursor-ring {
      640px   phone  — full single column, scaled-down type, hamburger nav
    ========================================================================== */
 
+/* ---- Small desktop (1440px and below, just above tablet) -----------------
+   The bio and card columns have fixed desktop widths that together span the
+   whole 1280px column; below 1440px the column is narrower and they would
+   overflow the viewport. The bio flexes instead, so the card always stays
+   visible and the row fits. */
+
+@media (min-width: 1001px) and (max-width: 1439px) {
+  .profile__top { gap: 64px; }
+  .profile__bio { width: auto; flex: 1 1 0; min-width: 0; }
+}
+
 /* ---- Tablet (1000px and below) ------------------------------------------- */
 
 @media (max-width: 1000px) {
