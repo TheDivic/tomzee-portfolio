@@ -218,15 +218,15 @@ ul { margin: 0; padding: 0; list-style: none; }
   box-shadow: var(--shadow-purple);
 }
 
-/* Plain text link that sits next to a button */
-.btn-text {
-  display: inline-flex;
-  align-items: center;
-  padding: 14px 4px;
-  text-decoration: none;
-  font-size: var(--t-body);
+/* Secondary button: same box as primary but unfilled. A subtle lilac wash
+   sweeps behind it on hover and the text turns purple. */
+.btn--quiet {
+  --btn-fill: rgba(61, 35, 87, 0.08);
+  background: transparent;
+  border-color: transparent;
+  color: var(--c-ink);
 }
-.btn-text:hover { text-decoration: underline; text-underline-offset: 4px; }
+.btn--quiet:hover { color: var(--c-purple); }
 
 /* ==========================================================================
    Site header
@@ -597,14 +597,6 @@ ul { margin: 0; padding: 0; list-style: none; }
 }
 
 .btn--primary.btn--lg { border-color: var(--c-purple); }
-
-/* Same box as the primary button but unfilled, so the pair line up exactly */
-.btn--quiet {
-  background: transparent;
-  border-color: transparent;
-  color: var(--c-ink);
-}
-.btn--quiet:hover { text-decoration: underline; text-underline-offset: 4px; }
 
 /* ==========================================================================
    Projects page
