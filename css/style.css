@@ -449,6 +449,7 @@ ul { margin: 0; padding: 0; list-style: none; }
      lives inside .home-hero__inner (a .container), so alignment is kept. */
   width: 100%;
   position: relative;
+  isolation: isolate;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -458,6 +459,32 @@ ul { margin: 0; padding: 0; list-style: none; }
     radial-gradient(52% 46% at 82% 24%, rgba(61, 35, 87, 0.10), transparent 68%),
     radial-gradient(38% 34% at 10% 88%, rgba(61, 35, 87, 0.08), transparent 70%);
   overflow: hidden;
+}
+
+/* A slow, ambient aurora layer drifts behind the hero content, shifting the
+   existing purple glow so the top of the page feels alive without ever
+   competing with the headline or CTAs. */
+.home-hero::before {
+  content: "";
+  position: absolute;
+  inset: -30%;
+  z-index: -1;
+  background:
+    radial-gradient(ellipse 60% 50% at 40% 40%, rgba(61, 35, 87, 0.10), transparent 60%),
+    radial-gradient(ellipse 50% 60% at 80% 70%, rgba(61, 35, 87, 0.08), transparent 55%);
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .home-hero::before {
+    animation: hero-aurora 22s ease-in-out infinite alternate;
+  }
+}
+
+@keyframes hero-aurora {
+  from { transform: translate(-3%, -3%) rotate(0deg) scale(1); }
+  to   { transform: translate(3%, 3%) rotate(4deg) scale(1.08); }
 }
 
 .home-hero__inner {
