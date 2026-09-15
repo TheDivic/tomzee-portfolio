@@ -1565,7 +1565,6 @@ body.cursor-invert.cursor-hot .cursor-ring {
     flex-direction: column;
     align-items: stretch;
     gap: 16px;
-    max-width: 360px;
   }
   .home-hero__cta .btn { justify-content: center; }
   .home-hero__meta { margin-bottom: 20px; }
