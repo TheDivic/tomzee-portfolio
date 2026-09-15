@@ -540,35 +540,6 @@ ul { margin: 0; padding: 0; list-style: none; }
   z-index: 1;
 }
 
-.home-hero__stamp {
-  position: absolute;
-  bottom: 80px;
-  right: clamp(-40px, 2vw, 8px);
-  width: clamp(180px, 20vw, 260px);
-  aspect-ratio: 1;
-  pointer-events: none;
-}
-
-.home-hero__stamp svg {
-  width: 100%;
-  height: 100%;
-  overflow: visible;
-}
-
-.home-hero__stamp line {
-  stroke: rgba(61, 35, 87, 0.12);
-  stroke-width: 1;
-  stroke-linecap: round;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .home-hero__stamp svg { animation: stamp-rotate 80s linear infinite; }
-}
-
-@keyframes stamp-rotate {
-  to { transform: rotate(360deg); }
-}
-
 .home-hero__scroll {
   position: absolute;
   left: 50%;
@@ -1390,8 +1361,7 @@ body.cursor-hot .cursor-dot {
   .site-footer { padding: 80px 0 64px; }
   .site-footer__inner { gap: 64px; }
 
-  /* Home: seal and scroll hint are desktop-only */
-  .home-hero__stamp { display: none; }
+  /* Home: scroll hint is desktop-only */
   .home-hero__scroll { display: none; }
 
   /* Case-study: ghost numeral is desktop-only */
