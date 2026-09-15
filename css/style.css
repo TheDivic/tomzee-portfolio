@@ -1357,6 +1357,8 @@ body::after {
   background: var(--c-purple);
   z-index: 8001;
   will-change: transform;
+  transition: opacity 0.18s ease-out,
+              background-color var(--t-fast) ease-out;
 }
 
 .cursor-ring {
@@ -1374,6 +1376,19 @@ body.cursor-hot .cursor-ring {
 
 body.cursor-hot .cursor-dot {
   transform: scale(1.9);
+}
+
+/* Over dark surfaces the ink-coloured cursor would disappear (e.g. the purple
+   footer or a case-study hero), so js/main.js toggles .cursor-invert on
+   <body> when the pointer crosses a dark background and the dot and ring flip
+   to a light colour. */
+body.cursor-invert .cursor-dot {
+  background: var(--c-white);
+}
+
+body.cursor-invert .cursor-ring,
+body.cursor-invert.cursor-hot .cursor-ring {
+  border-color: rgba(255, 255, 255, 0.8);
 }
 
 /* Only show the custom cursor on precise pointers; nothing changes if

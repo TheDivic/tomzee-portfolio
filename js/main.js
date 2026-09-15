@@ -341,10 +341,35 @@ function prefersReducedMotion() {
 
   window.addEventListener("pointerleave", hide);
   document.addEventListener("pointerover", function (event) {
-    var hover = event.target.closest("a, button, [data-hover]");
+    var target = event.target;
+    var hover = target.closest("a, button, [data-hover]");
     isHot = !!hover;
     document.body.classList.toggle("cursor-hot", isHot);
+    // Flip the cursor to light when it crosses a dark surface (footer, case
+    // study hero, etc.). Determined from the first non-transparent background
+    // found on the element under the pointer or one of its ancestors.
+    document.body.classList.toggle("cursor-invert", isDarkSurface(target));
   });
+
+  // Rough luminance check: a dark surface is anything whose effective
+  // background is clearly darker than mid-grey (see --c-purple and the case
+  // study heroes). Translucent washes are skipped so a light parent decides.
+  function isDarkSurface(el) {
+    var node = el;
+    while (node && node.nodeType === 1) {
+      var bg = getComputedStyle(node).backgroundColor;
+      var m = bg && bg.match(/rgba?\(\s*(\d+),\s*(\d+),\s*(\d+)(?:,\s*([\d.]+))?\s*\)/);
+      if (m) {
+        var alpha = m[4] != null ? parseFloat(m[4]) : 1;
+        if (alpha >= 0.5) {
+          var lum = 0.2126 * +m[1] + 0.7152 * +m[2] + 0.0722 * +m[3];
+          return lum < 100;
+        }
+      }
+      node = node.parentElement;
+    }
+    return false;
+  }
 
   function loop() {
     raf = null;
