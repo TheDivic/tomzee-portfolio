@@ -1339,12 +1339,10 @@ body::after {
   border: 1.5px solid rgba(61, 35, 87, 0.35);
   will-change: transform;
   transition: border-color var(--t-fast) ease-out,
-              transform var(--t-fast) ease-out,
               opacity 0.18s ease-out;
 }
 
 body.cursor-hot .cursor-ring {
-  transform: scale(1.45);
   border-color: var(--c-purple);
 }
 

@@ -326,6 +326,7 @@
   var rx = -100, ry = -100;
   var raf = null;
   var shown = false;
+  var isHot = false;
 
   function show() {
     shown = true;
@@ -352,17 +353,26 @@
   window.addEventListener("pointerleave", hide);
   document.addEventListener("pointerover", function (event) {
     var hover = event.target.closest("a, button, [data-hover]");
-    document.body.classList.toggle("cursor-hot", !!hover);
+    isHot = !!hover;
+    document.body.classList.toggle("cursor-hot", isHot);
   });
 
   function loop() {
     raf = null;
     rx += (x - rx) * 0.22;
     ry += (y - ry) * 0.22;
-    // Negative margins in CSS already centre the 40px ring on its position,
-    // so translate sits its geometric centre exactly on (rx, ry).
+    var dx = x - rx;
+    var dy = y - ry;
+    var dist = Math.sqrt(dx * dx + dy * dy);
+    // Stretch the ring toward the cursor as it lags behind, like a teardrop.
+    var stretch = Math.min(dist * 0.04, 0.9);
+    var hotScale = isHot ? 1.45 : 1;
+    var sx = (1 + stretch) * hotScale;
+    var sy = Math.max(0.65, (1 - stretch * 0.25) * hotScale);
     ring.style.translate = rx + "px " + ry + "px";
-    if (Math.abs(x - rx) > 0.5 || Math.abs(y - ry) > 0.5) {
+    ring.style.rotate = Math.atan2(dy, dx) + "rad";
+    ring.style.scale = sx + " " + sy;
+    if (dist > 0.5) {
       raf = window.requestAnimationFrame(loop);
     }
   }
