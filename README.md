@@ -85,17 +85,20 @@ optional and all respect reduced motion:
 
 - **Parallax depth.** Elements with a `data-parallax="0.3"` attribute drift at
   that speed (bigger number = faster) as you scroll, so the page feels layered.
-  It's used on the home hero pieces and the case-study titles. Set to whole
-  numbers on purpose so you can tweak by feel.
-- **Magnetic buttons.** Links or buttons with `data-magnetic` slide a couple of
-  pixels toward your cursor on hover and settle back on leave. Applied to the
-  main CTAs ("View project", "Book a call").
+  It's used on the home hero pieces and the case-study titles.
 - **Custom cursor.** A small dot plus a trailing ring replaces nothing — the
   real cursor stays visible. It's built for precise pointers (mouse/trackpad)
   and never appears on touch screens or under reduced motion.
 - **Film grain.** A very faint fixed texture over the whole page (see
   `body::after` in `css/style.css`). It's a tiny repeating SVG tile, so it costs
   nothing.
+- **Hero signature instrument.** A quiet cursor-reactive diagram in the
+  bottom-right of the home hero. The dot glides inside a thin frame as you move
+  the cursor; it's `aria-hidden` and hidden on small screens.
+- **Hero load choreography.** The eyebrow, headline lines, CTAs, scroll hint
+  and signature instrument enter in a calm stagger on page load.
+- **Refined link underlines.** Footer links and icon links reveal a hairline
+  that slides in from the left on hover/focus, matching the navigation.
 
 - **Catalog numerals.** Project cards (`01`), profile sections (`01`, `02`,
   `03`) and case-study entries are numbered automatically by CSS counters — no

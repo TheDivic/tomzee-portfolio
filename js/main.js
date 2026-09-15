@@ -19,6 +19,8 @@
    7. Custom cursor: a small dot plus a trailing ring that grows over
       anything interactive. Only for precise pointers (mouse/trackpad) and
       never when the OS prefers reduced motion.
+   8. Hero signature instrument: a small cursor-reactive diagram in the
+      bottom-right of the home hero. Decorative, reduced-motion safe.
    ========================================================================== */
 
 /* ---- Shared helpers ------------------------------------------------------ */
@@ -367,4 +369,70 @@ function prefersReducedMotion() {
       raf = window.requestAnimationFrame(loop);
     }
   }
+})();
+
+/* ==========================================================================
+   8. Hero signature instrument — a small cursor-reactive diagram in the
+      bottom-right of the home hero. The indicator dot smoothly maps the
+      cursor position inside the hero bounds to the SVG frame. When the
+      cursor leaves the hero, the dot drifts back to centre. Purely
+      decorative, disabled for reduced-motion users and coarse pointers.
+   ========================================================================== */
+(function () {
+  var signature = document.querySelector(".home-hero__signature");
+  var hero = document.querySelector(".home-hero");
+  var dot = signature ? signature.querySelector(".signature__dot") : null;
+  if (!signature || !hero || !dot) return;
+  if (!window.matchMedia("(pointer: fine)").matches) return;
+  if (prefersReducedMotion()) return;
+
+  var tx = 0, ty = 0;      // target offset in SVG units (-60..60)
+  var cx = 0, cy = 0;      // current offset
+  var raf = null;
+  var inside = false;
+
+  function clamp(n, min, max) { return n < min ? min : n > max ? max : n; }
+
+  function update() {
+    raf = null;
+    // Gentle interpolation toward target: ~10% per frame at 60fps.
+    cx += (tx - cx) * 0.08;
+    cy += (ty - cy) * 0.08;
+    dot.setAttribute("transform", "translate(" + cx + "," + cy + ")");
+    if (Math.abs(tx - cx) > 0.05 || Math.abs(ty - cy) > 0.05) {
+      raf = window.requestAnimationFrame(update);
+    }
+  }
+
+  function schedule() {
+    if (!raf) raf = window.requestAnimationFrame(update);
+  }
+
+  window.addEventListener("pointermove", function (event) {
+    var rect = hero.getBoundingClientRect();
+    var x = event.clientX - rect.left;
+    var y = event.clientY - rect.top;
+    inside = x >= 0 && x <= rect.width && y >= 0 && y <= rect.height;
+
+    if (inside) {
+      // Map cursor position to frame travel: frame is 120px wide/tall,
+      // centred at 80,80, so travel is +/- 60 in each axis.
+      tx = (clamp(x / rect.width, 0, 1) - 0.5) * 120;
+      ty = (clamp(y / rect.height, 0, 1) - 0.5) * 120;
+    } else {
+      tx = 0;
+      ty = 0;
+    }
+    schedule();
+  }, { passive: true });
+
+  window.addEventListener("pointerleave", function () {
+    inside = false;
+    tx = 0;
+    ty = 0;
+    schedule();
+  });
+
+  // Start a single loop so the dot returns to centre on load.
+  schedule();
 })();
