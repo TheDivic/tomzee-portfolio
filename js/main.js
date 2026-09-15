@@ -384,10 +384,11 @@ function prefersReducedMotion() {
 
   function apply() {
     var y = window.scrollY;
-    // The wave pattern drifts diagonally and upward as you scroll,
-    // creating a slow, liquid sense of movement.
-    pattern.style.setProperty("--pattern-x", -(y * 0.08) + "px");
-    pattern.style.setProperty("--pattern-y", -(y * 0.15) + "px");
+    // Sparse, soft dots drift very slowly, creating a calm parallax field.
+    pattern.style.setProperty("--pattern-x", (y * 0.02) + "px");
+    pattern.style.setProperty("--pattern-y", -(y * 0.06) + "px");
+    pattern.style.setProperty("--pattern-x2", (y * 0.01) + "px");
+    pattern.style.setProperty("--pattern-y2", -(y * 0.03) + "px");
   }
 
   window.addEventListener("scroll", onNextFrame(apply), { passive: true });

@@ -123,14 +123,17 @@ body.profile-page .profile-hero { background-image: none; }
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  /* A soft, wavy line pattern. One gentle sine wave repeats across the
-     page and drifts diagonally as you scroll, giving the landing page a
-     calm, liquid sense of movement without any hard texture. */
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='240' viewBox='0 0 400 240'%3E%3Cpath d='M0 120c25-35 75-35 100 0s75 35 100 0 75-35 100 0 75 35 100 0' fill='none' stroke='rgba(61,35,87,0.06)' stroke-width='1.2' stroke-linecap='round'/%3E%3C/svg%3E");
+  /* Sparse, ultra-soft dots at two scales. Much fewer than before, with
+     gentle feathered edges so they read as a calm field rather than a grid. */
+  background-image:
+    radial-gradient(circle at center, rgba(61, 35, 87, 0.06) 0, transparent 14px),
+    radial-gradient(circle at center, rgba(61, 35, 87, 0.045) 0, transparent 22px);
   background-size:
-    400px 240px;
+    140px 140px,
+    280px 280px;
   background-position:
-    var(--pattern-x, 0) var(--pattern-y, 0);
+    var(--pattern-x, 0) var(--pattern-y, 0),
+    var(--pattern-x2, 0) var(--pattern-y2, 0);
   opacity: 1;
 }
 
