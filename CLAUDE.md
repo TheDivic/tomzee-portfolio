@@ -65,11 +65,8 @@ sits on top of a dark hero image.
   section. The fullscreen phone menu is keyed off a `.menu-open` class on `<body>`
   (toggled by js/main.js), and its `backdrop-filter` is disabled while open so the
   menu isn't trapped inside the sticky header.
-- **22 images are still placeholders** on the case-study pages, and **6 links are
-  `#TODO` stubs.** Both lists are in README.md. When replacing a placeholder, swap
-  the whole `<div class="placeholder">` for an `<img>` with explicit `width` and
-  `height` attributes (prevents the page jumping as images load) and `loading="lazy"`
-  if it is below the fold.
+- **3 links are `#TODO` stubs** (the "Visit website" links on the project list
+  and case-study pages). They are listed in README.md.
 
 ## Verifying a change
 
