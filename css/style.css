@@ -1422,9 +1422,13 @@ body.cursor-invert.cursor-hot .cursor-ring {
   .project-card--reverse { flex-direction: column; }
   .project-card__body { flex: none; }
 
-  /* The preview image leads the card on smaller screens and the actions
-     spread to fill the card width below it. */
-  .tile { order: -1; width: 480px; height: 480px; align-self: center; }
+  /* Project type scales down a step between desktop and phone */
+  .project-card__title { font-size: 48px; }
+  .project-card__tagline { font-size: 34px; }
+
+  /* The preview image leads the card on smaller screens, keeps its square
+     proportions, and stretches to fill the card width. */
+  .tile { order: -1; width: 100%; height: auto; aspect-ratio: 1 / 1; }
   .project-card__actions { width: 100%; }
   .project-card__actions .btn { flex: 1 1 0; justify-content: center; }
 
