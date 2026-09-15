@@ -214,7 +214,7 @@ ul { margin: 0; padding: 0; list-style: none; }
   background: var(--btn-fill, var(--c-purple-hover));
   transform: scaleX(0);
   transform-origin: center;
-  transition: transform var(--t-base) var(--ease-out);
+  transition: transform 0.65s var(--ease-out);
   z-index: -1;
 }
 .btn:hover::before { transform: scaleX(1); }
