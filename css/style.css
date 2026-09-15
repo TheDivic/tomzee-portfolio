@@ -696,8 +696,18 @@ ul { margin: 0; padding: 0; list-style: none; }
 .tile--lokal   { background: var(--c-lokal); }
 
 /* Each logo sits in a fixed-size window and is positioned inside it exactly
-   as the design crops it. The window sizes come straight from Figma. */
-.tile__window { position: relative; overflow: hidden; }
+   as the design crops it. The window sizes come straight from Figma.
+
+   The hover zoom is applied to the window itself, not the image, so every
+   project zooms from the visual center of its logo in the same way. */
+.tile__window {
+  position: relative;
+  overflow: hidden;
+  transition: transform var(--t-slow) var(--ease-out);
+  transform-origin: center;
+}
+
+.project-card:hover .tile__window { transform: scale(1.06); }
 
 .tile__window--qredo { width: 197px; height: 202px; }
 .tile__window--qredo img {
@@ -707,7 +717,6 @@ ul { margin: 0; padding: 0; list-style: none; }
   left: -16.19%;
   top: -4.95%;
   max-width: none;
-  transition: transform var(--t-slow) var(--ease-out);
 }
 
 .tile__window--hanover { width: 366px; height: 84px; }
@@ -715,16 +724,10 @@ ul { margin: 0; padding: 0; list-style: none; }
   width: 100%;
   height: 100%;
   transform: rotate(180deg) scaleX(-1);
-  transition: filter var(--t-slow) var(--ease-out);
 }
-.project-card:hover .tile__window--hanover img { filter: brightness(1.06); }
 
 .tile__window--lokal { width: 542px; height: 542px; }
-.tile__window--lokal img { width: 100%; height: 100%; object-fit: cover; transition: transform var(--t-slow) var(--ease-out); }
-
-/* Hovering a card breathes its logo slowly into the frame */
-.project-card:hover .tile__window--qredo img,
-.project-card:hover .tile__window--lokal img { transform: scale(1.06); }
+.tile__window--lokal img { width: 100%; height: 100%; object-fit: cover; }
 
 /* ==========================================================================
    Profile page
