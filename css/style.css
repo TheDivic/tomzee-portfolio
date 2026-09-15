@@ -555,16 +555,10 @@ ul { margin: 0; padding: 0; list-style: none; }
   overflow: visible;
 }
 
-.home-hero__stamp ellipse,
-.home-hero__stamp circle {
-  fill: none;
-  stroke: rgba(61, 35, 87, 0.13);
+.home-hero__stamp line {
+  stroke: rgba(61, 35, 87, 0.12);
   stroke-width: 1;
-}
-
-.home-hero__stamp circle {
-  fill: rgba(61, 35, 87, 0.16);
-  stroke: none;
+  stroke-linecap: round;
 }
 
 @media (prefers-reduced-motion: no-preference) {

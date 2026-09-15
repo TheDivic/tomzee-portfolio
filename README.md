@@ -96,8 +96,8 @@ optional and all respect reduced motion:
 - **Film grain.** A very faint fixed texture over the whole page (see
   `body::after` in `css/style.css`). It's a tiny repeating SVG tile, so it costs
   nothing.
-- **The designer's seal.** On the home hero, a slow-rotating wireframe
-  sphere that behaves like a watermark/stamp. It's `aria-hidden`
+- **The abstract mark.** On the home hero, a slow-rotating cluster of
+  thin lines that behaves like a watermark/stamp. It's `aria-hidden`
   decoration — if it ever becomes annoying, delete the `.home-hero__stamp`
   div from `index.html`.
 - **Catalog numerals.** Project cards (`01`), profile sections (`01`, `02`,
