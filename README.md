@@ -31,17 +31,6 @@ online.
 
 ---
 
-## TO DO: three links still need real addresses
-
-Every one of these is currently a dead placeholder. Search the project for `#TODO`
-to find them all, or ask Claude: *"replace the TODO links with these addresses"*.
-
-| Placeholder | What it should point to | Appears on |
-|---|---|---|
-| `#TODO-visit-qredo` | The real Qredo website | Projects, Qredo case study |
-| `#TODO-visit-hanover` | The real Hanover Research website | Projects, Hanover case study |
-| `#TODO-visit-lokal` | The real Lokal / weRate website | Projects, Lokal case study |
-
 ## Product shots: all done
 
 Every case-study product screen has been exported from Figma and wired in
