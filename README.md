@@ -92,11 +92,10 @@ optional and all respect reduced motion:
 - **Film grain.** A very faint fixed texture over the whole page (see
   `body::after` in `css/style.css`). It's a tiny repeating SVG tile, so it costs
   nothing.
-- **Hero signature instrument.** A quiet cursor-reactive diagram in the
-  bottom-right of the home hero. The dot glides inside a thin frame as you move
-  the cursor; it's `aria-hidden` and hidden on small screens.
-- **Hero load choreography.** The eyebrow, headline lines, CTAs, scroll hint
-  and signature instrument enter in a calm stagger on page load.
+- **Hero load choreography.** The eyebrow, headline lines, CTAs and scroll
+  hint enter in a calm stagger on page load.
+- **Landing-page pattern.** A faint page-wide dot texture drifts as you scroll,
+  giving the home page a quiet sense of depth. Disabled under reduced motion.
 - **Refined link underlines.** Footer links and icon links reveal a hairline
   that slides in from the left on hover/focus, matching the navigation.
 

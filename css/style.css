@@ -114,6 +114,31 @@ body.profile-page {
    the whole light, so we avoid doubling up the glow at the top of the page. */
 body.profile-page .profile-hero { background-image: none; }
 
+/* A quiet, page-wide geometric texture sits behind the landing page. Two
+   dot grids at different scales drift at different speeds as you scroll,
+   creating a very subtle sense of depth without ever competing with the
+   content. It is purely decorative and removed for reduced-motion users. */
+.page-pattern {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image:
+    radial-gradient(rgba(61, 35, 87, 0.055) 1px, transparent 1px),
+    radial-gradient(rgba(61, 35, 87, 0.045) 1.5px, transparent 1.5px);
+  background-size:
+    56px 56px,
+    112px 112px;
+  background-position:
+    var(--pattern-x, 0) var(--pattern-y, 0),
+    var(--pattern-x2, 0) var(--pattern-y2, 0);
+  opacity: 0.7;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-pattern { display: none; }
+}
+
 img, svg { display: block; max-width: 100%; }
 
 a { color: inherit; }
@@ -489,31 +514,6 @@ ul { margin: 0; padding: 0; list-style: none; }
   overflow: hidden;
 }
 
-/* A subtle, drifting dot-grid texture sits behind the hero content.
-   The dots are tiny and low-contrast so they read as atmosphere rather
-   than pattern, and they drift diagonally to give the hero a quiet pulse. */
-.home-hero::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  background-image: radial-gradient(rgba(61, 35, 87, 0.14) 1px, transparent 1px);
-  background-size: 32px 32px;
-  opacity: 0.45;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .home-hero::before {
-    animation: hero-texture 24s linear infinite;
-  }
-}
-
-@keyframes hero-texture {
-  from { background-position: 0 0; }
-  to   { background-position: 32px 32px; }
-}
-
 .home-hero__inner {
   display: flex;
   flex-direction: column;
@@ -566,10 +566,6 @@ ul { margin: 0; padding: 0; list-style: none; }
   .home-hero__scroll {
     animation: hero-fade-up var(--t-slow) var(--ease-out) 0.92s backwards;
   }
-
-  .home-hero__signature {
-    animation: hero-fade-in var(--t-slow) var(--ease-out) 1.05s backwards;
-  }
 }
 
 @keyframes hero-line-in {
@@ -578,10 +574,6 @@ ul { margin: 0; padding: 0; list-style: none; }
 
 @keyframes hero-fade-up {
   from { opacity: 0; transform: translateY(16px); }
-}
-
-@keyframes hero-fade-in {
-  from { opacity: 0; }
 }
 
 .home-hero__cta {
@@ -626,49 +618,6 @@ ul { margin: 0; padding: 0; list-style: none; }
   0%, 20% { transform: scaleY(1); opacity: 1; }
   60%     { transform: scaleY(0.2); opacity: 0.4; }
   100%    { transform: scaleY(0); opacity: 0; }
-}
-
-/* A quiet cursor-reactive instrument in the hero's bottom-right corner.
-   It looks like a static diagram until the cursor moves over the hero,
-   then a tiny indicator glides inside the frame. It's `aria-hidden` and
-   hidden on small screens so it never competes with content. */
-.home-hero__signature {
-  position: absolute;
-  right: clamp(24px, 4vw, 64px);
-  bottom: clamp(80px, 12vh, 140px);
-  width: clamp(112px, 10vw, 152px);
-  z-index: 1;
-  pointer-events: none;
-  opacity: 0.55;
-  transition: opacity var(--t-base) var(--ease-out);
-}
-
-.home-hero__signature svg {
-  width: 100%;
-  height: auto;
-  overflow: visible;
-}
-
-.home-hero__signature .signature__frame {
-  fill: none;
-  stroke: rgba(61, 35, 87, 0.14);
-  stroke-width: 1;
-}
-
-.home-hero__signature .signature__hair {
-  stroke: rgba(61, 35, 87, 0.10);
-  stroke-width: 1;
-}
-
-.home-hero__signature .signature__dot {
-  fill: rgba(61, 35, 87, 0.28);
-  transition: fill var(--t-fast) var(--ease-out);
-  will-change: transform;
-}
-
-@media (hover: hover) {
-  .home-hero:hover .home-hero__signature { opacity: 0.8; }
-  .home-hero:hover .home-hero__signature .signature__dot { fill: rgba(61, 35, 87, 0.42); }
 }
 
 /* ==========================================================================
@@ -1488,9 +1437,8 @@ body.cursor-hot .cursor-dot {
   .site-footer { padding: 80px 0 64px; }
   .site-footer__inner { gap: 64px; }
 
-  /* Home: scroll hint and signature are desktop-only */
-  .home-hero__scroll,
-  .home-hero__signature { display: none; }
+  /* Home: scroll hint is desktop-only */
+  .home-hero__scroll { display: none; }
 
   /* Case-study: ghost numeral is desktop-only */
   .cs-hero__index { display: none; }
