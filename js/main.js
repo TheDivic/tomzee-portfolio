@@ -384,12 +384,12 @@ function prefersReducedMotion() {
 
   function apply() {
     var y = window.scrollY;
-    // Layer 1: faster diagonal drift.
-    pattern.style.setProperty("--pattern-x", (y * 0.06) + "px");
-    pattern.style.setProperty("--pattern-y", -(y * 0.25) + "px");
-    // Layer 2: slower, deeper drift.
-    pattern.style.setProperty("--pattern-x2", (y * 0.03) + "px");
-    pattern.style.setProperty("--pattern-y2", -(y * 0.12) + "px");
+    // Layer 1: slow, smooth vertical drift.
+    pattern.style.setProperty("--pattern-x", (y * 0.03) + "px");
+    pattern.style.setProperty("--pattern-y", -(y * 0.12) + "px");
+    // Layer 2: even slower, creating gentle parallax depth.
+    pattern.style.setProperty("--pattern-x2", (y * 0.015) + "px");
+    pattern.style.setProperty("--pattern-y2", -(y * 0.06) + "px");
   }
 
   window.addEventListener("scroll", onNextFrame(apply), { passive: true });

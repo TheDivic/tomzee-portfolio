@@ -123,12 +123,14 @@ body.profile-page .profile-hero { background-image: none; }
   inset: 0;
   z-index: -1;
   pointer-events: none;
+  /* Soft, diffused dots at two scales — much smoother and quieter than the
+     previous sharp grid. They read as atmosphere rather than texture. */
   background-image:
-    radial-gradient(rgba(61, 35, 87, 0.16) 1.5px, transparent 1.5px),
-    radial-gradient(rgba(61, 35, 87, 0.12) 2px, transparent 2px);
+    radial-gradient(circle at center, rgba(61, 35, 87, 0.07) 0, transparent 14px),
+    radial-gradient(circle at center, rgba(61, 35, 87, 0.05) 0, transparent 22px);
   background-size:
-    56px 56px,
-    112px 112px;
+    72px 72px,
+    144px 144px;
   background-position:
     var(--pattern-x, 0) var(--pattern-y, 0),
     var(--pattern-x2, 0) var(--pattern-y2, 0);
