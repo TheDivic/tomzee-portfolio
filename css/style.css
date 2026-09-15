@@ -895,11 +895,14 @@ ul { margin: 0; padding: 0; list-style: none; }
 .testimonials__title { font-size: 48px; font-weight: 400; line-height: 1.2; }
 
 /* The design runs these off the right edge, so they scroll sideways.
-   scroll-snap makes that feel deliberate rather than accidental. */
+   scroll-snap makes that feel deliberate rather than accidental. The track
+   bleeds past the container's right edge out to the viewport edge, while its
+   left edge stays aligned with the content column. */
 .testimonials__track {
   display: flex;
   align-items: stretch;
   gap: 32px;
+  width: calc((100vw + 100%) / 2);
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   scrollbar-width: none;

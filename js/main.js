@@ -7,9 +7,8 @@
       logo also swaps from white to dark so it stays readable.
    2. Mobile nav: the hamburger button opens and closes a fullscreen menu on
       small screens (locked to the viewport, centred links).
-   3. Testimonials carousel: on the home/profile page the testimonial track
-      scrolls sideways one card at a time and loops, pausing on hover/focus.
-      Skips entirely if the OS asks for reduced motion.
+3. Testimonials carousel: on the home/profile page the testimonial track
+       scrolls sideways one card at a time and loops, pausing on hover/focus.
    4. Scroll reveal enhancer: elements with data-reveal animate in as they
       enter the viewport.
    5. Scroll-scrub reveal: elements with data-reveal="scrub" fade in
@@ -116,13 +115,11 @@ function prefersReducedMotion() {
    3. Testimonials carousel — on the home page the testimonial track is
       wider than its container, so it scrolls sideways. Every few seconds
       this advances it by one card and loops back to the start. It pauses
-      while you hover over it, drag it, or focus it, and does nothing at all
-      if the OS prefers reduced motion.
+      while you hover over it, drag it, or focus it.
    ========================================================================== */
 (function () {
   var track = document.querySelector(".testimonials__track");
   if (!track) return;
-  if (prefersReducedMotion()) return;
 
   var INTERVAL = 3200;        // milliseconds between card advances
   var pauseCount = 0;         // incremented by hover/focus, so both can be active
@@ -131,8 +128,8 @@ function prefersReducedMotion() {
   function step() {
     if (pauseCount > 0 || document.hidden) return;
 
-    var overflow = track.scrollWidth - track.clientWidth;
-    if (overflow <= 1) return;            // nothing to scroll on this screen
+    var maxScroll = track.scrollWidth - track.clientWidth;
+    if (maxScroll <= 1) return;            // nothing to scroll on this screen
 
     var cards = track.children;
     if (!cards.length) return;
@@ -140,11 +137,21 @@ function prefersReducedMotion() {
       ? cards[1].offsetLeft - cards[0].offsetLeft    // card + its gap
       : cards[0].offsetWidth;
 
-    if (track.scrollLeft + stepWidth > overflow) {
-      track.scrollLeft = 0;                // loop back to the first card
-    } else {
-      track.scrollTo({ left: track.scrollLeft + stepWidth, behavior: "smooth" });
+    /* Where the carousel lands at the end: the start of the last card when
+       there is room to show it fully, otherwise the furthest scrollable point
+       so the final card still peeks in before the loop restarts. */
+    var lastSnap = (cards.length - 1) * stepWidth;
+    var final = Math.min(lastSnap, maxScroll);
+
+    if (track.scrollLeft >= final - 1) {
+      track.scrollLeft = 0;                // at the end: loop back to the first card
+      return;
     }
+
+    track.scrollTo({
+      left: Math.min(track.scrollLeft + stepWidth, final),
+      behavior: "smooth"
+    });
   }
 
   ["pointerenter", "focus"].forEach(function (eventName) {
