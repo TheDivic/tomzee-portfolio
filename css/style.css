@@ -1551,8 +1551,23 @@ body.cursor-invert.cursor-hot .cursor-ring {
   /* Home                                                                */
   /* ------------------------------------------------------------------ */
 
-  .home-hero { min-height: 480px; }
-  .home-hero__cta { flex-direction: column; align-items: flex-start; gap: 16px; }
+  /* The sticky header overlays the top of the hero at every breakpoint. On a
+     phone the meta + title + stacked CTAs are taller than the viewport-safe
+     area, so centring would push the first line up under the header. Instead
+     the hero lets the content start below the header and the CTAs stack
+     edge-to-edge. */
+  .home-hero {
+    justify-content: flex-start;
+    min-height: 480px;
+    padding-top: calc(var(--header-h) + 24px);
+  }
+  .home-hero__cta {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+    max-width: 360px;
+  }
+  .home-hero__cta .btn { justify-content: center; }
   .home-hero__meta { margin-bottom: 20px; }
 
   /* ------------------------------------------------------------------ */
