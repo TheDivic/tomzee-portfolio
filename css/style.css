@@ -114,33 +114,6 @@ body.profile-page {
    the whole light, so we avoid doubling up the glow at the top of the page. */
 body.profile-page .profile-hero { background-image: none; }
 
-/* A quiet, page-wide geometric texture sits behind the landing page. Two
-   dot grids at different scales drift at different speeds as you scroll,
-   creating a very subtle sense of depth without ever competing with the
-   content. It is purely decorative and removed for reduced-motion users. */
-.page-pattern {
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  /* Sparse, ultra-soft dots at two scales. Much fewer than before, with
-     gentle feathered edges so they read as a calm field rather than a grid. */
-  background-image:
-    radial-gradient(circle at center, rgba(61, 35, 87, 0.06) 0, transparent 14px),
-    radial-gradient(circle at center, rgba(61, 35, 87, 0.045) 0, transparent 22px);
-  background-size:
-    140px 140px,
-    280px 280px;
-  background-position:
-    var(--pattern-x, 0) var(--pattern-y, 0),
-    var(--pattern-x2, 0) var(--pattern-y2, 0);
-  opacity: 1;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .page-pattern { display: none; }
-}
-
 img, svg { display: block; max-width: 100%; }
 
 a { color: inherit; }

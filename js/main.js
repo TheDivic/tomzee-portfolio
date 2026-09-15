@@ -19,8 +19,6 @@
    7. Custom cursor: a small dot plus a trailing ring that grows over
       anything interactive. Only for precise pointers (mouse/trackpad) and
       never when the OS prefers reduced motion.
-   8. Landing-page pattern: a faint page-wide geometric texture whose
-      background position drifts with scroll, adding depth on the home page.
    ========================================================================== */
 
 /* ---- Shared helpers ------------------------------------------------------ */
@@ -371,28 +369,6 @@ function prefersReducedMotion() {
 }
 })();
 
-/* ==========================================================================
-   8. Landing-page pattern — a faint page-wide dot texture whose background
-      position drifts with scroll. Two layers move at different speeds, so
-      the background feels layered and alive as you scroll. Disabled under
-      prefers-reduced-motion and on pages without the .page-pattern element.
-   ========================================================================== */
-(function () {
-  var pattern = document.querySelector(".page-pattern");
-  if (!pattern) return;
-  if (prefersReducedMotion()) return;
 
-  function apply() {
-    var y = window.scrollY;
-    // Sparse, soft dots drift very slowly, creating a calm parallax field.
-    pattern.style.setProperty("--pattern-x", (y * 0.02) + "px");
-    pattern.style.setProperty("--pattern-y", -(y * 0.06) + "px");
-    pattern.style.setProperty("--pattern-x2", (y * 0.01) + "px");
-    pattern.style.setProperty("--pattern-y2", -(y * 0.03) + "px");
-  }
-
-  window.addEventListener("scroll", onNextFrame(apply), { passive: true });
-  apply();
-})();
 
 

@@ -94,9 +94,6 @@ optional and all respect reduced motion:
   nothing.
 - **Hero load choreography.** The eyebrow, headline lines, CTAs and scroll
   hint enter in a calm stagger on page load.
-- **Landing-page pattern.** A sparse field of soft, feathered dots drifts
-  slowly as you scroll, giving the home page a quiet sense of depth. Disabled
-  under reduced motion.
 - **Refined link underlines.** Footer links and icon links reveal a hairline
   that slides in from the left on hover/focus, matching the navigation.
 
