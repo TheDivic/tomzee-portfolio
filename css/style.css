@@ -124,15 +124,15 @@ body.profile-page .profile-hero { background-image: none; }
   z-index: -1;
   pointer-events: none;
   background-image:
-    radial-gradient(rgba(61, 35, 87, 0.055) 1px, transparent 1px),
-    radial-gradient(rgba(61, 35, 87, 0.045) 1.5px, transparent 1.5px);
+    radial-gradient(rgba(61, 35, 87, 0.16) 1.5px, transparent 1.5px),
+    radial-gradient(rgba(61, 35, 87, 0.12) 2px, transparent 2px);
   background-size:
     56px 56px,
     112px 112px;
   background-position:
     var(--pattern-x, 0) var(--pattern-y, 0),
     var(--pattern-x2, 0) var(--pattern-y2, 0);
-  opacity: 0.7;
+  opacity: 1;
 }
 
 @media (prefers-reduced-motion: reduce) {
