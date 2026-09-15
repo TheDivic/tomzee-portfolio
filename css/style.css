@@ -1433,7 +1433,12 @@ body.cursor-invert.cursor-hot .cursor-ring {
   .project-card { flex-direction: column; align-items: stretch; gap: 40px; }
   .project-card--reverse { flex-direction: column; }
   .project-card__body { flex: none; }
-  .tile { width: 480px; height: 480px; align-self: center; }
+
+  /* The preview image leads the card on smaller screens and the actions
+     spread to fill the card width below it. */
+  .tile { order: -1; width: 480px; height: 480px; align-self: center; }
+  .project-card__actions { width: 100%; }
+  .project-card__actions .btn { flex: 1 1 0; justify-content: center; }
 
   /* Footer: columns become one */
   .footer-cols { grid-template-columns: 1fr; gap: 48px; }
@@ -1580,7 +1585,10 @@ body.cursor-invert.cursor-hot .cursor-ring {
   .project-card { padding: 20px; gap: 28px; }
   .project-card__title { font-size: 40px; }
   .project-card__tagline { font-size: 26px; }
-  .project-card__actions { flex-wrap: wrap; gap: 16px; }
+
+  /* Actions stack full-width on the smallest screens */
+  .project-card__actions { flex-direction: column; align-items: stretch; gap: 16px; }
+  .project-card__actions .btn { flex: none; width: 100%; }
 
   .tile { width: 100%; height: auto; aspect-ratio: 1 / 1; }
   .tile__window--qredo   { width: 100px; height: 102px; }
