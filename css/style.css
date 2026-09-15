@@ -1423,7 +1423,7 @@ body.cursor-invert.cursor-hot .cursor-ring {
   .project-card__body { flex: none; }
 
   /* Project type scales down a step between desktop and phone */
-  .project-card__title { font-size: 48px; }
+  .project-card__title { font-size: 44px; }
   .project-card__tagline { font-size: 34px; }
 
   /* The preview image leads the card on smaller screens, keeps its square
