@@ -96,17 +96,18 @@ optional and all respect reduced motion:
 - **Film grain.** A very faint fixed texture over the whole page (see
   `body::after` in `css/style.css`). It's a tiny repeating SVG tile, so it costs
   nothing.
-- **The designer's seal.** On the home hero, a slow-spinning ring of text that
-  behaves like a watermark/stamp. It's `aria-hidden` decoration — if it ever
-  becomes annoying, delete the `.home-hero__stamp` div from `index.html`.
+- **The designer's seal.** On the home hero, a quiet circular ring with a
+  centre dot that behaves like a watermark/stamp. It's `aria-hidden`
+  decoration — if it ever becomes annoying, delete the `.home-hero__stamp`
+  div from `index.html`.
 - **Catalog numerals.** Project cards (`01`), profile sections (`01`, `02`,
   `03`) and case-study entries are numbered automatically by CSS counters — no
   markup to maintain. If a numeral ever looks wrong, the rules live next to the
   matching card/section styles in `css/style.css`.
 
 **Tweaks that never need a designer:** changing a numeral's size or colour is a
-one-property change in the relevant `::before` rule; the stamp's spin speed is
-`animation: seal-spin 32s` in `.home-hero__stamp`.
+one-property change in the relevant `::before` rule; the stamp's size and colour
+are set in the `.home-hero__stamp` rule in `css/style.css`.
 
 ---
 
