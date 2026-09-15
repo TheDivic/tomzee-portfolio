@@ -1453,38 +1453,21 @@ body.cursor-hot .cursor-dot {
   }
   body.menu-open .nav__link:nth-child(2) { animation-delay: 60ms; }
 
+  /* Mobile menu links use the same hairline treatment as desktop links.
+     Because they have horizontal padding, the hairline is inset so it sits
+     neatly under the text rather than spanning the full padded box. */
+  body.menu-open .nav__link::before,
+  body.menu-open .nav__link[aria-current="page"]::after {
+    left: 16px;
+    right: 16px;
+  }
+
   /* The burger floats above the fullscreen menu and morphs into a close
      ✕, so it doubles as the close button. */
   body.menu-open .nav-toggle__bar { background: var(--c-ink); }
   body.menu-open .nav-toggle__bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
   body.menu-open .nav-toggle__bar:nth-child(2) { opacity: 0; }
   body.menu-open .nav-toggle__bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
-
-  /* The desktop header's current-page hairline sits at the bottom of its
-     click row. In the menu the links are tall, so that hairline is dropped.
-     The current page is underlined and purple; hovering the current page
-     only changes its colour. An unselected link shows the underline only
-     on hover/focus, matching standard link behaviour. */
-  body.menu-open .nav__link[aria-current="page"]::after { display: none; }
-
-  body.menu-open .nav__link[aria-current="page"] {
-    color: var(--c-purple);
-    text-decoration: underline;
-    text-underline-offset: 4px;
-  }
-  body.menu-open .nav__link[aria-current="page"]:hover,
-  body.menu-open .nav__link[aria-current="page"]:active,
-  body.menu-open .nav__link[aria-current="page"]:focus-visible {
-    color: var(--c-purple-hover);
-  }
-
-  body.menu-open .nav__link:not([aria-current="page"]):hover,
-  body.menu-open .nav__link:not([aria-current="page"]):active,
-  body.menu-open .nav__link:not([aria-current="page"]):focus-visible {
-    color: var(--c-purple);
-    text-decoration: underline;
-    text-underline-offset: 4px;
-  }
 
   /* The frosted sticky bar uses backdrop-filter, which would otherwise
      contain the fixed menu inside the header. It is flattened while the
