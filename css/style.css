@@ -626,11 +626,10 @@ ul { margin: 0; padding: 0; list-style: none; }
 
 .projects-intro__title { margin-bottom: 56px; }
 
-.project-list { display: flex; flex-direction: column; gap: 64px; counter-reset: project; }
+.project-list { display: flex; flex-direction: column; gap: 64px; }
 
 .project-card {
   position: relative;
-  counter-increment: project;
   display: flex;
   align-items: center;
   gap: 48px;
@@ -644,17 +643,6 @@ ul { margin: 0; padding: 0; list-style: none; }
 .project-card:hover {
   transform: translateY(-6px);
   box-shadow: var(--shadow-md);
-}
-
-/* Each project gets a catalog numeral that sits above its title like an
-   exhibition index. The counter does the numbering, so no markup needed. */
-.project-card__head::before {
-  content: "0" counter(project);
-  font-family: var(--font-display);
-  font-size: 26px;
-  line-height: 1;
-  letter-spacing: 0.1em;
-  color: var(--c-purple);
 }
 
 /* Hanover puts its tile on the left — the design alternates them */
