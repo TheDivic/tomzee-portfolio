@@ -1143,9 +1143,7 @@ ul { margin: 0; padding: 0; list-style: none; }
   align-items: center;
   justify-content: center;
   box-shadow: var(--shadow-sm);
-  transition: box-shadow var(--t-base) var(--ease-out);
 }
-.cs-gallery__item:hover { box-shadow: var(--shadow-md); }
 .cs-gallery__item img {
   width: 100%;
   height: auto;
