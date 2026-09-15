@@ -520,21 +520,33 @@ ul { margin: 0; padding: 0; list-style: none; }
   right: clamp(-40px, 2vw, 8px);
   width: clamp(180px, 20vw, 260px);
   aspect-ratio: 1;
-  border: 1px solid rgba(61, 35, 87, 0.14);
-  border-radius: 50%;
   pointer-events: none;
 }
 
-.home-hero__stamp::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 8px;
-  height: 8px;
-  background: rgba(61, 35, 87, 0.18);
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
+.home-hero__stamp svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.home-hero__stamp ellipse,
+.home-hero__stamp circle {
+  fill: none;
+  stroke: rgba(61, 35, 87, 0.13);
+  stroke-width: 1;
+}
+
+.home-hero__stamp circle {
+  fill: rgba(61, 35, 87, 0.16);
+  stroke: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .home-hero__stamp svg { animation: stamp-rotate 80s linear infinite; }
+}
+
+@keyframes stamp-rotate {
+  to { transform: rotate(360deg); }
 }
 
 .home-hero__scroll {
