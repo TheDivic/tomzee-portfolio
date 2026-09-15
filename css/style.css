@@ -1452,7 +1452,6 @@ body.cursor-hot .cursor-dot {
     animation: menu-link-in var(--t-base) var(--ease-out) backwards;
   }
   body.menu-open .nav__link:nth-child(2) { animation-delay: 60ms; }
-  body.menu-open .nav__link:nth-child(3) { animation-delay: 120ms; }
 
   /* The burger floats above the fullscreen menu and morphs into a close
      ✕, so it doubles as the close button. */
@@ -1462,16 +1461,26 @@ body.cursor-hot .cursor-dot {
   body.menu-open .nav-toggle__bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
 
   /* The desktop header's current-page hairline sits at the bottom of its
-     click row. In the menu the links are tall, so that hairline is dropped
-     and an underline is drawn under the text instead — on hover, and pinned
-     to the current page, exactly like the desktop links. Hover means little
-     on a touch screen, so :active and :focus-visible show it on tap/keyboard
-     focus too. */
+     click row. In the menu the links are tall, so that hairline is dropped.
+     The current page is underlined and purple; hovering the current page
+     only changes its colour. An unselected link shows the underline only
+     on hover/focus, matching standard link behaviour. */
   body.menu-open .nav__link[aria-current="page"]::after { display: none; }
-  body.menu-open .nav__link:hover,
-  body.menu-open .nav__link:active,
-  body.menu-open .nav__link:focus-visible,
+
   body.menu-open .nav__link[aria-current="page"] {
+    color: var(--c-purple);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+  body.menu-open .nav__link[aria-current="page"]:hover,
+  body.menu-open .nav__link[aria-current="page"]:active,
+  body.menu-open .nav__link[aria-current="page"]:focus-visible {
+    color: var(--c-purple-hover);
+  }
+
+  body.menu-open .nav__link:not([aria-current="page"]):hover,
+  body.menu-open .nav__link:not([aria-current="page"]):active,
+  body.menu-open .nav__link:not([aria-current="page"]):focus-visible {
     color: var(--c-purple);
     text-decoration: underline;
     text-underline-offset: 4px;
