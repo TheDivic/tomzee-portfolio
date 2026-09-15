@@ -114,8 +114,10 @@ function prefersReducedMotion() {
 /* ==========================================================================
    3. Testimonials carousel — on the home page the testimonial track is
       wider than its container, so it scrolls sideways. Every few seconds
-      this advances it by one card and loops back to the start. It pauses
-      while you hover over it, drag it, or focus it.
+      it advances by exactly one card, so each card pauses flush with the
+      left padding edge. The cards are duplicated once so the loop can
+      rewind invisibly — the scroll reads as endless. It pauses while you
+      hover over it, drag it, or focus it.
    ========================================================================== */
 (function () {
   var track = document.querySelector(".testimonials__track");
@@ -125,31 +127,41 @@ function prefersReducedMotion() {
   var pauseCount = 0;         // incremented by hover/focus, so both can be active
   var timer = null;
 
+  /* Duplicate the cards so the loop never visibly rewinds: when the track
+     reaches the copy of the first card, it jumps back to the real first
+     card, which looks identical. The copies are hidden from screen readers. */
+  var originalCount = track.children.length;
+  Array.prototype.forEach.call(
+    Array.prototype.slice.call(track.children),
+    function (card) {
+      var clone = card.cloneNode(true);
+      clone.setAttribute("aria-hidden", "true");
+      track.appendChild(clone);
+    }
+  );
+
   function step() {
     if (pauseCount > 0 || document.hidden) return;
 
-    var maxScroll = track.scrollWidth - track.clientWidth;
-    if (maxScroll <= 1) return;            // nothing to scroll on this screen
+    if (track.scrollWidth - track.clientWidth <= 1) return;
 
     var cards = track.children;
-    if (!cards.length) return;
     var stepWidth = cards.length > 1
       ? cards[1].offsetLeft - cards[0].offsetLeft    // card + its gap
       : cards[0].offsetWidth;
+    var loopSpan = originalCount * stepWidth;        // offset where the copy begins
 
-    /* Where the carousel lands at the end: the start of the last card when
-       there is room to show it fully, otherwise the furthest scrollable point
-       so the final card still peeks in before the loop restarts. */
-    var lastSnap = (cards.length - 1) * stepWidth;
-    var final = Math.min(lastSnap, maxScroll);
-
-    if (track.scrollLeft >= final - 1) {
-      track.scrollLeft = 0;                // at the end: loop back to the first card
-      return;
+    /* Parked on the copy of the first card: jump back to the real first
+       card. Both views are pixel-identical, so nobody sees the rewind and
+       the loop reads as endless. */
+    if (track.scrollLeft >= loopSpan - 1) {
+      track.scrollLeft -= loopSpan;
     }
 
+    /* Advance by exactly one card, so every stop lands flush with the left
+       padding edge (scroll-snap keeps manual scrolling aligned too). */
     track.scrollTo({
-      left: Math.min(track.scrollLeft + stepWidth, final),
+      left: track.scrollLeft + stepWidth,
       behavior: "smooth"
     });
   }
