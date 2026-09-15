@@ -195,47 +195,46 @@ ul { margin: 0; padding: 0; list-style: none; }
   line-height: 1.2;
   text-decoration: none;
   cursor: pointer;
-  transition: background-color var(--t-fast) var(--ease-out),
-              color var(--t-fast) var(--ease-out),
-              border-color var(--t-fast) var(--ease-out),
-              box-shadow var(--t-fast) var(--ease-out),
-              translate var(--t-base) var(--ease-out);
-}
-
-/* Refined button interaction: a soft, slow lift with a diffused shadow.
-   Uses the independent `translate` property so it layers cleanly with
-   magnetic transforms from JS. */
-.btn:hover { translate: 0 -3px; }
-.btn:active { translate: 0 0; }
-
-.btn--primary {
   position: relative;
   overflow: hidden;
+  z-index: 1;
+  transition: color var(--t-fast) var(--ease-out),
+              border-color var(--t-fast) var(--ease-out),
+              box-shadow var(--t-fast) var(--ease-out);
+}
+
+/* Tasteful button hover: a calm background wash that sweeps outward from the
+   centre. No lift, no scale, no shimmer — just a smooth colour transition
+   behind the text. */
+.btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: var(--btn-fill, var(--c-purple-hover));
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform var(--t-base) var(--ease-out);
+  z-index: -1;
+}
+.btn:hover::before { transform: scaleX(1); }
+.btn:active::before { transform: scaleX(1); }
+
+.btn--primary {
+  --btn-fill: var(--c-purple-hover);
   background: var(--c-purple);
   color: var(--c-on-purple);
   box-shadow: var(--shadow-purple);
 }
-.btn--primary:hover {
-  background: var(--c-purple-hover);
-  box-shadow: 0 22px 54px rgba(61, 35, 87, 0.28);
-}
-.btn--primary::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(110deg, transparent 35%, rgba(255, 255, 255, 0.12) 50%, transparent 65%);
-  transform: translateX(-120%) skewX(-18deg);
-  transition: transform 0.55s var(--ease-out);
-}
-.btn--primary:hover::before { transform: translateX(120%) skewX(-18deg); }
 
 /* Outlined button used on the dark purple bands */
 .btn--ghost {
+  --btn-fill: var(--c-on-purple);
   background: transparent;
   color: var(--c-on-purple);
   border-color: var(--c-on-purple);
 }
-.btn--ghost:hover { background: var(--c-on-purple); color: var(--c-purple); }
+.btn--ghost:hover { color: var(--c-purple); }
 
 /* A plain text link that sits next to a button */
 .btn-text {
@@ -1039,6 +1038,7 @@ ul { margin: 0; padding: 0; list-style: none; }
 
 /* Outlined button on the dark band */
 .btn--outline {
+  --btn-fill: #efebf3;
   background: transparent;
   color: #efebf3;
   border: 2px solid #efebf3;
@@ -1046,7 +1046,7 @@ ul { margin: 0; padding: 0; list-style: none; }
   padding: 16px 32px;
   border-radius: 12px;
 }
-.btn--outline:hover { background: #efebf3; color: var(--c-purple); }
+.btn--outline:hover { color: var(--c-purple); }
 
 /* ---- Body: timelines, mockups, gallery ----------------------------------- */
 
